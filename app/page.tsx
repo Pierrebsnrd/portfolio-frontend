@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import LoadingSpinner from './components/ui/LoadingSpinner';
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 import About from './components/sections/About';
@@ -37,15 +38,39 @@ export default function Home() {
     }
   };
 
+ /*  const [isInitialLoading, setIsInitialLoading] = useState(true);
+
+  useEffect(() => {
+    // Simuler le chargement initial de l'app
+    const timer = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+// Affichage du spinner plein écran pendant le chargement initial
+  if (isInitialLoading) {
+    return (
+      <LoadingSpinner 
+        fullScreen 
+        size="xl" 
+        variant="pulse" 
+        text="Chargement du portfolio..." 
+      />
+    );
+  } */
+
   return (
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} scrollToSection={scrollToSection} />
-      <main>
-        <HeroSection scrollToSection={scrollToSection} />
-        <About />
-        <Projects />
-        <ContactForm />
-      </main>
+    <main className="min-h-screen">
+      <HeroSection scrollToSection={scrollToSection} />
+      <About />
+      <Projects />
+      <ContactForm />
+      <Footer />
+    </main>
       <Footer />
     </div>
   );
