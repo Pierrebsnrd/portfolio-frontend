@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Filter, Code, Database, Smartphone, Globe } from 'lucide-react';
-import ProjectCard from './ProjectCard';
+import ProjectCard from '../ui/ProjectCard';
 
 interface Project {
   id: number;

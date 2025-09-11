@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import About from './components/About';
-import Projects from './components/Projects';
-import ContactForm from './components/ContactForm';
-import Footer from './components/Footer';
+import Navbar from './components/layout/Navbar';
+import HeroSection from './components/sections/HeroSection';
+import About from './components/sections/About';
+import Projects from './components/sections/Projects';
+import ContactForm from './components/ui/ContactForm';
+import Footer from './components/layout/Footer';
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
