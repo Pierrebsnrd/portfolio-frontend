@@ -69,7 +69,6 @@ export default function Home() {
       <About />
       <Projects />
       <ContactForm />
-      <Footer />
     </main>
       <Footer />
     </div>
