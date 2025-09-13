@@ -31,7 +31,7 @@ export interface ContactFormData {
   message: string;
 }
 
-// Types pour le statut du formulaire
+// Types pour le statut du formulaire (mis à jour)
 export type FormStatus = '' | 'sending' | 'success' | 'error';
 
 // Types pour les props des composants
@@ -47,4 +47,20 @@ export interface HeroSectionProps {
 
 export interface ProjectCardProps {
   project: Project;
+}
+
+// Types pour les API responses
+export interface ApiResponse<T = any> {
+  success: boolean;
+  message: string;
+  data?: T;
+  errors?: any[];
+}
+
+// Types pour l'email
+export interface EmailTemplate {
+  to: string;
+  subject: string;
+  html: string;
+  text?: string;
 }
