@@ -9,6 +9,7 @@ export interface Project {
   githubBackend?: string;
   demo?: string;
   featured: boolean;
+  images?: string[];
   image?: string;
 }
 

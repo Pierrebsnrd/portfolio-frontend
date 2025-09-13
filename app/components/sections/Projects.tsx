@@ -19,7 +19,10 @@ const Projects: React.FC = () => {
       githubBackend: "https://github.com/Pierrebsnrd/sophrologie-backend",
       demo: "https://www.sophrologuevillepreux.fr/",
       featured: true,
-      image: "/images/projects/sophrologie-preview.png"
+      images: [
+        "/images/projects/sophrologie/image-1.png",
+        /* "/images/projects/sophrologie/image-2.png", */
+      ]
     },
     {
       id: 2,
@@ -31,7 +34,10 @@ const Projects: React.FC = () => {
       githubBackend: "https://github.com/Pierrebsnrd/trollen-backend",
       demo: "#",
       featured: true,
-      /* image: "/images/projects/trollen-preview.jpg" */
+      images: [
+/*         "/images/projects/trollen/image-1.png",
+        "/images/projects/trollen/image-2.png" */
+      ]
     },
     {
       id: 3,
@@ -43,7 +49,11 @@ const Projects: React.FC = () => {
       githubBackend: "https://github.com/Pierrebsnrd/hackatweet/tree/main/backend",
       demo: "#",
       featured: false,
-     /*  image: "/images/projects/hackatweet-preview.jpg" */
+      images: [
+/*         "/images/projects/hackatweet/image-1.png",
+        "/images/projects/hackatweet/image-2.png",
+        "/images/projects/hackatweet/image-3.png" */
+      ]
     },
   ];
 
@@ -80,7 +90,7 @@ const Projects: React.FC = () => {
         </h2>
         <p className="text-xl text-gray-600 dark:text-gray-300 text-center mb-12 max-w-3xl mx-auto">
           Découvrez une sélection de mes réalisations en développement web et
-          mobile
+          mobile. Cliquez sur les images pour voir plus de captures d'écran.
         </p>
 
         {/* Filtres */}

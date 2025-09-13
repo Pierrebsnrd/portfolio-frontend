@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Github, ExternalLink, Star, X } from "lucide-react";
+import { Github, ExternalLink, Star, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Project } from "../../../app/types/index";
 
 interface ProjectCardProps {
@@ -11,14 +11,50 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [showModal, setShowModal] = useState(false);
-  const [imageError, setImageError] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageError, setImageError] = useState<{ [key: string]: boolean }>({});
 
-  // Utilise le placeholder.svg par défaut
-  const getImageSrc = () => {
-    if (project.image && !imageError) {
-      return project.image;
+  // Obtient toutes les images du projet
+  const getProjectImages = (): string[] => {
+    if (project.images && project.images.length > 0) {
+      return project.images;
+    }
+    if (project.image) {
+      return [project.image];
+    }
+    return ["/images/projects/placeholder.svg"];
+  };
+
+  const projectImages = getProjectImages();
+  const totalImages = projectImages.length;
+
+  // Fonction pour obtenir l'image principale (première image ou placeholder)
+  const getMainImageSrc = () => {
+    const mainImage = projectImages[0];
+    if (mainImage && !imageError[mainImage]) {
+      return mainImage;
     }
     return "/images/projects/placeholder.svg";
+  };
+
+  // Navigation dans la galerie
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+  };
+
+  const goToImage = (index: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex(index);
+  };
+
+  const handleImageError = (imageSrc: string) => {
+    setImageError(prev => ({ ...prev, [imageSrc]: true }));
   };
 
   const getCategoryColor = (category: Project["category"]): string => {
@@ -51,54 +87,55 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     }
   };
 
-  // Placeholder discret sans texte
-  const PlaceholderImage = () => (
-    <div className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 flex items-center justify-center border-2 border-dashed border-gray-300 dark:border-gray-600">
-      <div className="text-center opacity-60">
-        <div className="w-16 h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-800/50 dark:to-purple-800/50 flex items-center justify-center">
-          <svg className="w-8 h-8 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-        </div>
-      </div>
-    </div>
-  );
+  const openModal = () => {
+    setCurrentImageIndex(0);
+    setShowModal(true);
+  };
+
+  // Détermine si on utilise le placeholder
+  const isUsingPlaceholder = getMainImageSrc() === "/images/projects/placeholder.svg";
 
   return (
     <>
       <div className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
         
         {/* IMAGE DE PREVIEW */}
-        <div className="relative h-48 w-full overflow-hidden">
-          {project.image ? (
-            <Image
-              src={project.image}
-              alt={`Preview de ${project.title}`}
-              fill
-              className="object-cover cursor-pointer"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              onClick={() => setShowModal(true)}
-              onError={() => {
-                console.log(`Erreur de chargement de l'image: ${project.image}`);
-                setImageError(true);
-              }}
-              priority={project.featured}
-              unoptimized={true}
-            />
-          ) : (
-            <div className="cursor-pointer h-full" onClick={() => setShowModal(true)}>
-              <PlaceholderImage />
-            </div>
-          )}
+        <div 
+          className="relative h-48 w-full overflow-hidden cursor-pointer"
+          onClick={openModal}
+        >
+          <Image
+            src={getMainImageSrc()}
+            alt={`Preview de ${project.title}`}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            onError={() => handleImageError(getMainImageSrc())}
+            priority={project.featured}
+            unoptimized={true}
+          />
           
-          {/* Overlay gradient seulement si image existe */}
-          {project.image && !imageError && (
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {/* Overlay gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          
+          {/* Indicateur multiple images */}
+          {totalImages > 1 && !isUsingPlaceholder && (
+            <div className="absolute top-4 right-4 z-10">
+              <div className="bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded text-xs font-medium flex items-center gap-1">
+                <div className="w-3 h-3 grid grid-cols-2 gap-0.5">
+                  <div className="w-1 h-1 bg-white rounded-full"></div>
+                  <div className="w-1 h-1 bg-white rounded-full"></div>
+                  <div className="w-1 h-1 bg-white rounded-full"></div>
+                  <div className="w-1 h-1 bg-white rounded-full"></div>
+                </div>
+                {totalImages}
+              </div>
+            </div>
           )}
           
           {/* Featured badge */}
           {project.featured && (
-            <div className="absolute top-4 right-4 z-10">
+            <div className="absolute top-4 left-4 z-10">
               <div className="bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 backdrop-blur-sm">
                 <Star className="w-3 h-3" />
                 <span>Mis en avant</span>
@@ -114,6 +151,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               {getCategoryText(project.category)}
             </span>
           </div>
+
+          {/* Indicateur de placeholder */}
+          {isUsingPlaceholder && (
+            <div className="absolute top-4 left-4 z-10">
+              <div className="bg-gray-500/80 backdrop-blur-sm text-white px-2 py-1 rounded text-xs font-medium">
+                En développement
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="p-6">
@@ -188,39 +234,94 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </div>
 
-      {/* MODAL D'AGRANDISSEMENT */}
+      {/* MODAL GALERIE D'IMAGES */}
       {showModal && (
         <div 
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           onClick={() => setShowModal(false)}
         >
           <div 
-            className="relative max-w-4xl max-h-[90vh] w-full"
+            className="relative max-w-6xl max-h-[95vh] w-full"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Bouton fermer */}
             <button
               onClick={() => setShowModal(false)}
-              className="absolute -top-10 right-0 text-white hover:text-gray-300 transition-colors"
-              aria-label="Fermer"
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+              aria-label="Fermer la galerie"
             >
               <X className="w-8 h-8" />
             </button>
             
-            {/* Image agrandie */}
-            <div className="relative w-full h-[70vh] bg-white dark:bg-gray-800 rounded-lg overflow-hidden">
+            {/* Compteur d'images */}
+            {totalImages > 1 && (
+              <div className="absolute -top-12 left-0 text-white text-sm">
+                {currentImageIndex + 1} / {totalImages}
+              </div>
+            )}
+
+            {/* Conteneur principal de l'image */}
+            <div className="relative w-full h-[80vh] bg-gray-900 rounded-lg overflow-hidden">
               <Image
-                src={getImageSrc()}
-                alt={`Preview agrandie de ${project.title}`}
+                src={projectImages[currentImageIndex] || "/images/projects/placeholder.svg"}
+                alt={`${project.title} - Image ${currentImageIndex + 1}`}
                 fill
                 className="object-contain"
-                sizes="90vw"
+                sizes="95vw"
+                onError={() => handleImageError(projectImages[currentImageIndex])}
                 unoptimized={true}
               />
+
+              {/* Navigation - Flèches */}
+              {totalImages > 1 && (
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all backdrop-blur-sm"
+                    aria-label="Image précédente"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all backdrop-blur-sm"
+                    aria-label="Image suivante"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
             </div>
+
+            {/* Miniatures */}
+            {totalImages > 1 && (
+              <div className="flex justify-center mt-4 gap-2 px-4 overflow-x-auto">
+                {projectImages.map((imageSrc, index) => (
+                  <button
+                    key={index}
+                    onClick={(e) => goToImage(index, e)}
+                    className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                      index === currentImageIndex
+                        ? 'border-blue-500 ring-2 ring-blue-500/50'
+                        : 'border-gray-600 hover:border-gray-400'
+                    }`}
+                  >
+                    <Image
+                      src={imageSrc}
+                      alt={`Miniature ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="64px"
+                      unoptimized={true}
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
             
-            {/* Info du projet dans le modal */}
-            <div className="mt-4 text-white text-center">
+            {/* Informations du projet */}
+            <div className="mt-6 text-white text-center">
               <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
               <p className="text-gray-300 mb-4">{project.description}</p>
               <div className="flex flex-wrap justify-center gap-2">
