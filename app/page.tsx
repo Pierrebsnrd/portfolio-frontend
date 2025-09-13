@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import LoadingSpinner from './components/ui/LoadingSpinner';
+/* import LoadingSpinner from './components/ui/LoadingSpinner'; */
 import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 import About from './components/sections/About';

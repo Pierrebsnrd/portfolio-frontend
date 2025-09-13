@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>© 2024 Pierre Boisnard. Tous droits réservés. Développé avec React & Next.js.</p>
+          <p>© 2025 Pierre Boisnard. Tous droits réservés. Développé avec React & Next.js.</p>
         </div>
       </div>
     </footer>

@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { Github, ExternalLink, Star } from 'lucide-react';
-import { Project } from '@/app/types';
+import { Project } from '../../../app/types/index';
 
 interface ProjectCardProps {
   project: Project;

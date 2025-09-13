@@ -31,7 +31,7 @@ export interface ContactFormData {
   message: string;
 }
 
-// Types pour le statut du formulaire (mis à jour)
+// Types pour le statut du formulaire
 export type FormStatus = '' | 'sending' | 'success' | 'error';
 
 // Types pour les props des composants
@@ -49,18 +49,33 @@ export interface ProjectCardProps {
   project: Project;
 }
 
-// Types pour les API responses
-export interface ApiResponse<T = any> {
+// Types pour les API responses - CORRIGÉ : plus de `any`
+export interface ApiResponse<T = Record<string, unknown>> {
   success: boolean;
   message: string;
   data?: T;
-  errors?: any[];
+  errors?: string[];
 }
 
-// Types pour l'email
+// Types pour l'email - CORRIGÉ : address obligatoire
 export interface EmailTemplate {
   to: string;
   subject: string;
   html: string;
   text?: string;
+}
+
+// Types pour Nodemailer - AJOUTÉ
+export interface EmailAddress {
+  name: string;
+  address: string;
+}
+
+// Types pour les options d'email avec types stricts
+export interface EmailOptions {
+  from: EmailAddress | string;
+  to: string;
+  subject: string;
+  html: string;
+  text: string;
 }
