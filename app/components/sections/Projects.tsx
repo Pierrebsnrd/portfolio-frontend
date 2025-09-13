@@ -16,12 +16,14 @@ const Projects: React.FC = () => {
       technologies: ["Next.js", "React", "CSS Modules", "Node.js", "Express", "MongoDB", "JWT"],
       category: "fullstack",
       githubFrontend: "https://github.com/Pierrebsnrd/sophrologie-frontend",
-      githubBackend: "https://github.com/Pierrebsnrd/sophrologie-backend",
+      githubBackend: "https://github.com/Pierrebsnrd/sophrologie-backend", 
       demo: "https://www.sophrologuevillepreux.fr/",
       featured: true,
       images: [
         "/images/projects/sophrologie/image-1.png",
-        /* "/images/projects/sophrologie/image-2.png", */
+        "/images/projects/sophrologie/image-2.png",
+        "/images/projects/sophrologie/image-3.png",
+        "/images/projects/sophrologie/image-4.png"
       ]
     },
     {
@@ -35,13 +37,13 @@ const Projects: React.FC = () => {
       demo: "#",
       featured: true,
       images: [
-/*         "/images/projects/trollen/image-1.png",
-        "/images/projects/trollen/image-2.png" */
+        "/images/projects/trollen/image-1.png",
+        "/images/projects/trollen/image-2.png"
       ]
     },
     {
       id: 3,
-      title: "Hackatweet",
+      title: "Hackatweet", 
       description: "Mini réseau social type Twitter avec authentification utilisateur, publication de tweets en temps réel, système de likes et interface responsive moderne.",
       technologies: ["React", "Node.js", "Express", "MongoDB", "JavaScript"],
       category: "frontend",
@@ -50,18 +52,18 @@ const Projects: React.FC = () => {
       demo: "#",
       featured: false,
       images: [
-/*         "/images/projects/hackatweet/image-1.png",
-        "/images/projects/hackatweet/image-2.png",
-        "/images/projects/hackatweet/image-3.png" */
+        "/images/projects/hackatweet/image-1.png",
+        "/images/projects/hackatweet/image-2.png", 
+        "/images/projects/hackatweet/image-3.png"
       ]
-    },
+    }
   ];
 
   const filters: ProjectFilter[] = [
     { key: "all", label: "Tous", icon: <Filter className="w-4 h-4" /> },
     {
       key: "fullstack",
-      label: "Full-Stack",
+      label: "Full-Stack", 
       icon: <Code className="w-4 h-4" />,
     },
     { key: "frontend", label: "Frontend", icon: <Globe className="w-4 h-4" /> },
@@ -83,15 +85,21 @@ const Projects: React.FC = () => {
       : projects.filter((project) => project.category === activeFilter);
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Mes Projets
-        </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-300 text-center mb-12 max-w-3xl mx-auto">
-          Découvrez une sélection de mes réalisations en développement web et
-          mobile. Cliquez sur les images pour voir plus de captures d'écran.
-        </p>
+    <section 
+      id="projects" 
+      className="pt-16 min-h-screen bg-white dark:bg-gray-900 flex items-center"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+        {/* En-tête de section */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Mes Projets
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Découvrez une sélection de mes réalisations en développement web et mobile. 
+            Cliquez sur les images pour voir plus de captures d'écran.
+          </p>
+        </div>
 
         {/* Filtres */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">

@@ -1,93 +1,106 @@
 "use client";
 
-interface SkillGroup {
-  category: string;
-  skills: string[];
-}
+import { Code, Database, Globe, Smartphone, Users } from "lucide-react";
 
 const About = () => {
-  const skillGroups: SkillGroup[] = [
+  const skills = [
     {
       category: "Frontend",
-      skills: ["React", "Next.js", "HTML5", "CSS3", "JavaScript", "TypeScript"],
+      icon: <Globe className="w-6 h-6" />,
+      technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML5", "CSS3"],
+      color: "from-blue-500 to-cyan-500"
     },
     {
-      category: "Backend",
-      skills: ["Node.js", "Express.js", "REST API", "JWT Auth"],
-    },
-    {
-      category: "Base de données",
-      skills: ["MongoDB", "Mongoose ODM"],
+      category: "Backend", 
+      icon: <Database className="w-6 h-6" />,
+      technologies: ["Node.js", "Express", "MongoDB", "REST API", "JWT"],
+      color: "from-green-500 to-emerald-500"
     },
     {
       category: "Mobile",
-      skills: ["React Native"],
+      icon: <Smartphone className="w-6 h-6" />,
+      technologies: ["React Native", "Expo"],
+      color: "from-purple-500 to-pink-500"
     },
     {
       category: "Outils",
-      skills: ["Git", "GitHub", "Vercel", "Figma", "Trello"],
-    },
+      icon: <Code className="w-6 h-6" />,
+      technologies: ["Git", "GitHub", "VS Code", "Postman", "Figma"],
+      color: "from-orange-500 to-red-500"
+    }
   ];
 
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          À propos de moi
-        </h2>
+    <section 
+      id="about" 
+      className="pt-16 min-h-screen bg-gray-50 dark:bg-gray-800 flex items-center"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+        {/* En-tête de section */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            À Propos de Moi
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Développeur passionné avec une approche moderne du développement web. 
+            J'aime créer des expériences utilisateur exceptionnelles et des solutions techniques robustes.
+          </p>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Colonne gauche - Description */}
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Présentation personnelle */}
           <div className="space-y-6">
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-              Développeur full-stack passionné par le développement web et la
-              création d&apos;interfaces utilisateur intuitives. J&apos;ai
-              développé une solide expertise en développement
-              d&apos;applications web modernes avec une attention particulière
-              portée aux interfaces utilisateur soignées et à l&apos;expérience
-              utilisateur.
-            </p>
-
-            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-              Mon approche combine créativité et technicité pour créer des
-              solutions web innovantes et performantes. J&apos;aime relever des
-              défis techniques et transformer des idées en applications
-              fonctionnelles.
-            </p>
-
-            {/* Card Expertise */}
-            <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg">
-              <h3 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
-                🎯 Expertise
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-xl">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-3">
+                <Users className="w-7 h-7 text-blue-600" />
+                Mon Parcours
               </h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-300">
-                <li>• Développement d&apos;applications web full-stack</li>
-                <li>• Création d&apos;interfaces utilisateur modernes</li>
-                <li>• Développement d&apos;APIs REST performantes</li>
-                <li>• Applications mobiles avec React Native</li>
-              </ul>
+              <div className="space-y-4 text-gray-600 dark:text-gray-300">
+                <p>
+                  Passionné par le développement web depuis plusieurs années, j'ai acquis une solide 
+                  expérience dans la création d'applications web modernes et performantes.
+                </p>
+                <p>
+                  Mon approche se base sur une veille technologique constante et une attention 
+                  particulière aux bonnes pratiques de développement et à l'expérience utilisateur.
+                </p>
+                <p>
+                  J'accompagne mes clients dans la réalisation de leurs projets digitaux, 
+                  de la conception à la mise en production.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Colonne droite - Compétences */}
-          <div className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg">
-            <h3 className="text-2xl font-bold mb-8 text-center text-gray-800 dark:text-white">
-              Compétences techniques
+          {/* Compétences */}
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
+              <Code className="w-7 h-7 text-purple-600" />
+              Mes Compétences
             </h3>
-
-            <div className="space-y-6">
-              {skillGroups.map((skillGroup, index) => (
-                <div key={index}>
-                  <h4 className="font-semibold text-gray-800 dark:text-white mb-3">
-                    {skillGroup.category}
-                  </h4>
+            
+            <div className="grid gap-6">
+              {skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`p-3 rounded-lg bg-gradient-to-r ${skill.color} text-white group-hover:scale-110 transition-transform`}>
+                      {skill.icon}
+                    </div>
+                    <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
+                      {skill.category}
+                    </h4>
+                  </div>
+                  
                   <div className="flex flex-wrap gap-2">
-                    {skillGroup.skills.map((skill, skillIndex) => (
+                    {skill.technologies.map((tech, techIndex) => (
                       <span
-                        key={skillIndex}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors"
+                        key={techIndex}
+                        className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                       >
-                        {skill}
+                        {tech}
                       </span>
                     ))}
                   </div>

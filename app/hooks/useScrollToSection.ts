@@ -1,10 +1,15 @@
+// Hook de scroll corrigé
+// app/hooks/useScrollToSection.ts
+
 import { useCallback } from "react";
 
 export const useScrollToSection = () => {
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offsetTop = element.offsetTop - 80;
+      // Hauteur de la navbar (64px = h-16)
+      const navbarHeight = 64;
+      const offsetTop = element.offsetTop - navbarHeight;
 
       window.scrollTo({
         top: offsetTop,
