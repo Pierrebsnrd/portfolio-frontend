@@ -17,7 +17,7 @@ const Projects: React.FC = () => {
       category: "fullstack",
       githubFrontend: "https://github.com/Pierrebsnrd/sophrologie-frontend",
       githubBackend: "https://github.com/Pierrebsnrd/sophrologie-backend",
-      demo: "#",
+      demo: "https://www.sophrologuevillepreux.fr/",
       featured: true
     },
     {

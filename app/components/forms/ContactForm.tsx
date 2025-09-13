@@ -1,64 +1,30 @@
 'use client';
 
-import React, { useState } from 'react';
-import { ContactFormData, FormStatus } from '../../../app/types/index';
+import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { useContactForm } from '../../hooks/useContactForm';
 
-const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [status, setStatus] = useState<FormStatus>('');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setStatus('');
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        setStatus('success');
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        setStatus('error');
-        console.error('Erreur:', result.message);
-      }
-    } catch (error) {
-      console.error('Erreur réseau:', error);
-      setStatus('error');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+const ContactForm = () => {
+  const {
+    formData,
+    status,
+    errors,
+    isValid,
+    isSubmitting,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = useContactForm();
 
   return (
-    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-6">
-        <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">
-            Contactez-moi
-          </h2>
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-gray-800">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Contactez-moi
+        </h2>
 
+        <div className="max-w-2xl mx-auto">
           <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Champ Nom */}
             <div>
               <label 
                 htmlFor="name" 
@@ -72,15 +38,25 @@ const ContactForm: React.FC = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
-                         focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                onBlur={handleBlur}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
                          bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                         transition-colors duration-200"
+                         transition-colors duration-200 ${
+                           errors.name 
+                             ? 'border-red-500 dark:border-red-400' 
+                             : 'border-gray-300 dark:border-gray-600'
+                         }`}
                 placeholder="Votre nom"
               />
+              {errors.name && (
+                <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.name}
+                </p>
+              )}
             </div>
 
+            {/* Champ Email */}
             <div>
               <label 
                 htmlFor="email" 
@@ -94,15 +70,25 @@ const ContactForm: React.FC = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
-                         focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                onBlur={handleBlur}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
                          bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                         transition-colors duration-200"
-                placeholder="votre.email@exemple.com"
+                         transition-colors duration-200 ${
+                           errors.email 
+                             ? 'border-red-500 dark:border-red-400' 
+                             : 'border-gray-300 dark:border-gray-600'
+                         }`}
+                placeholder="votre@email.com"
               />
+              {errors.email && (
+                <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.email}
+                </p>
+              )}
             </div>
 
+            {/* Champ Message */}
             <div>
               <label 
                 htmlFor="message" 
@@ -115,47 +101,69 @@ const ContactForm: React.FC = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                required
-                rows={6}
-                className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg 
-                         focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                onBlur={handleBlur}
+                rows={5}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
                          bg-white dark:bg-gray-800 text-gray-900 dark:text-white
-                         transition-colors duration-200 resize-vertical"
+                         transition-colors duration-200 resize-none ${
+                           errors.message 
+                             ? 'border-red-500 dark:border-red-400' 
+                             : 'border-gray-300 dark:border-gray-600'
+                         }`}
                 placeholder="Décrivez votre projet ou votre demande..."
               />
+              {errors.message && (
+                <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
+                  <AlertCircle className="w-4 h-4" />
+                  {errors.message}
+                </p>
+              )}
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                {formData.message.length}/1000 caractères
+              </p>
             </div>
 
+            {/* Bouton de soumission */}
             <button
               type="submit"
-              disabled={isLoading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 
-                       text-white font-medium py-3 px-6 rounded-lg
-                       transition-colors duration-200 flex items-center justify-center"
+              disabled={!isValid || isSubmitting}
+              className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold
+                       transition-all duration-200 ${
+                         isValid && !isSubmitting
+                           ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transform hover:scale-[1.02]'
+                           : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                       }`}
             >
-              {isLoading ? (
+              {isSubmitting ? (
                 <>
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Envoi en cours...
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  {status === 'validating' ? 'Validation...' : 'Envoi en cours...'}
                 </>
               ) : (
-                'Envoyer le message'
+                <>
+                  <Send className="w-5 h-5" />
+                  Envoyer le message
+                </>
               )}
             </button>
 
-            {/* Messages de feedback */}
+            {/* Messages de statut */}
             {status === 'success' && (
-              <div className="p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
-                <p className="font-medium">Message envoyé avec succès ! 🎉</p>
+              <div className="p-4 bg-green-100 dark:bg-green-900/20 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-400 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5" />
+                  <p className="font-medium">Message envoyé avec succès ! 🎉</p>
+                </div>
                 <p className="text-sm mt-1">Je vous répondrai dans les plus brefs délais.</p>
               </div>
             )}
 
             {status === 'error' && (
-              <div className="p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
-                <p className="font-medium">Erreur lors de l'envoi 😕</p>
+              <div className="p-4 bg-red-100 dark:bg-red-900/20 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-400 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5" />
+                  <p className="font-medium">Erreur lors de l'envoi 😕</p>
+                </div>
                 <p className="text-sm mt-1">Veuillez réessayer ou me contacter directement.</p>
               </div>
             )}
