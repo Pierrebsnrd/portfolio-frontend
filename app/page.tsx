@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import Navbar from './components/layout/Navbar';
-import HeroSection from './components/sections/HeroSection';
-import About from './components/sections/About';
-import Projects from './components/sections/Projects';
-import ContactForm from './components/ui/ContactForm';
-import Footer from './components/layout/Footer';
-import { useDarkMode } from './hooks/useDarkMode';
-import { useScrollToSection } from './hooks/useScrollToSection';
+import Navbar from "./components/layout/Navbar";
+import HeroSection from "./components/sections/HeroSection";
+import About from "./components/sections/About";
+import Projects from "./components/sections/Projects";
+import ContactForm from "./components/ui/ContactForm";
+import Footer from "./components/layout/Footer";
+import { useDarkMode } from "./hooks/useDarkMode";
+import { useScrollToSection } from "./hooks/useScrollToSection";
 
 export default function Home() {
   const { darkMode, toggleDarkMode, isLoading } = useDarkMode();
@@ -23,11 +23,11 @@ export default function Home() {
   }
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
-      <Navbar 
-        darkMode={darkMode} 
-        toggleDarkMode={toggleDarkMode} 
-        scrollToSection={scrollToSection} 
+    <div className={`min-h-screen ${darkMode ? "dark" : ""}`}>
+      <Navbar
+        darkMode={darkMode}
+        toggleDarkMode={toggleDarkMode}
+        scrollToSection={scrollToSection}
       />
       <main className="min-h-screen">
         <HeroSection scrollToSection={scrollToSection} />

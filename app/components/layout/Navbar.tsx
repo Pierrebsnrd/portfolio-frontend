@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { useState } from "react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 
 interface NavbarProps {
   darkMode: boolean;
@@ -13,10 +13,10 @@ const Navbar = ({ darkMode, toggleDarkMode, scrollToSection }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'Accueil', id: 'home' },
-    { label: 'À propos', id: 'about' },
-    { label: 'Projets', id: 'projects' },
-    { label: 'Contact', id: 'contact' },
+    { label: "Accueil", id: "home" },
+    { label: "À propos", id: "about" },
+    { label: "Projets", id: "projects" },
+    { label: "Contact", id: "contact" },
   ];
 
   const handleNavClick = (sectionId: string) => {
@@ -33,7 +33,7 @@ const Navbar = ({ darkMode, toggleDarkMode, scrollToSection }: NavbarProps) => {
               Pierre Boisnard
             </span>
           </div>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
@@ -55,7 +55,11 @@ const Navbar = ({ darkMode, toggleDarkMode, scrollToSection }: NavbarProps) => {
               onClick={toggleDarkMode}
               className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
             >
-              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {darkMode ? (
+                <Sun className="w-5 h-5" />
+              ) : (
+                <Moon className="w-5 h-5" />
+              )}
             </button>
 
             {/* Mobile menu button */}
@@ -64,7 +68,11 @@ const Navbar = ({ darkMode, toggleDarkMode, scrollToSection }: NavbarProps) => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
               >
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
               </button>
             </div>
           </div>

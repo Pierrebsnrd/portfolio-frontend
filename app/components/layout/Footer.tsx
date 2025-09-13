@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -13,27 +13,27 @@ const Footer = () => {
             </p>
             <p className="text-gray-400">Développeur Full-Stack</p>
           </div>
-          
+
           <div className="flex space-x-6">
-            <a 
-              href="https://github.com/Pierrebsnrd" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://github.com/Pierrebsnrd"
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-blue-400 transition-colors transform hover:scale-110"
               aria-label="GitHub"
             >
               <Github className="w-6 h-6" />
             </a>
-            <a 
-              href="https://www.linkedin.com/in/pierre-boisnard-74514785/" 
-              target="_blank" 
+            <a
+              href="https://www.linkedin.com/in/pierre-boisnard-74514785/"
+              target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-400 transition-colors transform hover:scale-110"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-6 h-6" />
             </a>
-            <a 
+            <a
               href="mailto:pierre.boisnard@live.fr"
               className="hover:text-blue-400 transition-colors transform hover:scale-110"
               aria-label="Email"
@@ -42,9 +42,12 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        
+
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>© 2025 Pierre Boisnard. Tous droits réservés. Développé avec React & Next.js.</p>
+          <p>
+            © 2025 Pierre Boisnard. Tous droits réservés. Développé avec React
+            & Next.js.
+          </p>
         </div>
       </div>
     </footer>

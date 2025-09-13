@@ -1,39 +1,39 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Github, ExternalLink, Star } from 'lucide-react';
-import { Project } from '../../../app/types/index';
+import React from "react";
+import { Github, ExternalLink, Star } from "lucide-react";
+import { Project } from "../../../app/types/index";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const getCategoryColor = (category: Project['category']): string => {
+  const getCategoryColor = (category: Project["category"]): string => {
     switch (category) {
-      case 'fullstack':
-        return 'bg-gradient-to-r from-blue-500 to-purple-500';
-      case 'frontend':
-        return 'bg-gradient-to-r from-green-500 to-teal-500';
-      case 'backend':
-        return 'bg-gradient-to-r from-orange-500 to-red-500';
-      case 'mobile':
-        return 'bg-gradient-to-r from-pink-500 to-rose-500';
+      case "fullstack":
+        return "bg-gradient-to-r from-blue-500 to-purple-500";
+      case "frontend":
+        return "bg-gradient-to-r from-green-500 to-teal-500";
+      case "backend":
+        return "bg-gradient-to-r from-orange-500 to-red-500";
+      case "mobile":
+        return "bg-gradient-to-r from-pink-500 to-rose-500";
       default:
-        return 'bg-gray-500';
+        return "bg-gray-500";
     }
   };
 
-  const getCategoryText = (category: Project['category']): string => {
+  const getCategoryText = (category: Project["category"]): string => {
     switch (category) {
-      case 'fullstack':
-        return 'Full Stack';
-      case 'frontend':
-        return 'Frontend';
-      case 'backend':
-        return 'Backend';
-      case 'mobile':
-        return 'Mobile';
+      case "fullstack":
+        return "Full Stack";
+      case "frontend":
+        return "Frontend";
+      case "backend":
+        return "Backend";
+      case "mobile":
+        return "Mobile";
       default:
         return category;
     }
@@ -54,7 +54,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       <div className="p-6">
         {/* Category badge */}
         <div className="mb-4">
-          <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white ${getCategoryColor(project.category)}`}>
+          <span
+            className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white ${getCategoryColor(project.category)}`}
+          >
             {getCategoryText(project.category)}
           </span>
         </div>

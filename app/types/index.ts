@@ -4,7 +4,7 @@ export interface Project {
   title: string;
   description: string;
   technologies: string[];
-  category: 'fullstack' | 'frontend' | 'backend' | 'mobile';
+  category: "fullstack" | "frontend" | "backend" | "mobile";
   githubFrontend: string;
   githubBackend?: string;
   demo?: string;
@@ -32,7 +32,7 @@ export interface ContactFormData {
 }
 
 // Types pour le statut du formulaire
-export type FormStatus = '' | 'sending' | 'success' | 'error';
+export type FormStatus = "" | "sending" | "success" | "error";
 
 // Types pour les props des composants
 export interface NavbarProps {
@@ -49,7 +49,7 @@ export interface ProjectCardProps {
   project: Project;
 }
 
-// Types pour les API responses - CORRIGÉ : plus de `any`
+// Types pour les API responses
 export interface ApiResponse<T = Record<string, unknown>> {
   success: boolean;
   message: string;
@@ -57,7 +57,7 @@ export interface ApiResponse<T = Record<string, unknown>> {
   errors?: string[];
 }
 
-// Types pour l'email - CORRIGÉ : address obligatoire
+// Types pour l'email
 export interface EmailTemplate {
   to: string;
   subject: string;
@@ -65,7 +65,7 @@ export interface EmailTemplate {
   text?: string;
 }
 
-// Types pour Nodemailer - AJOUTÉ
+// Types pour Nodemailer
 export interface EmailAddress {
   name: string;
   address: string;

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
-import { useContactForm } from '../../hooks/useContactForm';
+import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { useContactForm } from "../../hooks/useContactForm";
 
 const ContactForm = () => {
   const {
@@ -26,8 +26,8 @@ const ContactForm = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Champ Nom */}
             <div>
-              <label 
-                htmlFor="name" 
+              <label
+                htmlFor="name"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Nom complet *
@@ -42,9 +42,9 @@ const ContactForm = () => {
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
                          bg-white dark:bg-gray-800 text-gray-900 dark:text-white
                          transition-colors duration-200 ${
-                           errors.name 
-                             ? 'border-red-500 dark:border-red-400' 
-                             : 'border-gray-300 dark:border-gray-600'
+                           errors.name
+                             ? "border-red-500 dark:border-red-400"
+                             : "border-gray-300 dark:border-gray-600"
                          }`}
                 placeholder="Votre nom"
               />
@@ -58,8 +58,8 @@ const ContactForm = () => {
 
             {/* Champ Email */}
             <div>
-              <label 
-                htmlFor="email" 
+              <label
+                htmlFor="email"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Email *
@@ -74,9 +74,9 @@ const ContactForm = () => {
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
                          bg-white dark:bg-gray-800 text-gray-900 dark:text-white
                          transition-colors duration-200 ${
-                           errors.email 
-                             ? 'border-red-500 dark:border-red-400' 
-                             : 'border-gray-300 dark:border-gray-600'
+                           errors.email
+                             ? "border-red-500 dark:border-red-400"
+                             : "border-gray-300 dark:border-gray-600"
                          }`}
                 placeholder="votre@email.com"
               />
@@ -90,8 +90,8 @@ const ContactForm = () => {
 
             {/* Champ Message */}
             <div>
-              <label 
-                htmlFor="message" 
+              <label
+                htmlFor="message"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Message *
@@ -106,9 +106,9 @@ const ContactForm = () => {
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
                          bg-white dark:bg-gray-800 text-gray-900 dark:text-white
                          transition-colors duration-200 resize-none ${
-                           errors.message 
-                             ? 'border-red-500 dark:border-red-400' 
-                             : 'border-gray-300 dark:border-gray-600'
+                           errors.message
+                             ? "border-red-500 dark:border-red-400"
+                             : "border-gray-300 dark:border-gray-600"
                          }`}
                 placeholder="Décrivez votre projet ou votre demande..."
               />
@@ -130,14 +130,16 @@ const ContactForm = () => {
               className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold
                        transition-all duration-200 ${
                          isValid && !isSubmitting
-                           ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transform hover:scale-[1.02]'
-                           : 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+                           ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transform hover:scale-[1.02]"
+                           : "bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                        }`}
             >
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
-                  {status === 'validating' ? 'Validation...' : 'Envoi en cours...'}
+                  {status === "validating"
+                    ? "Validation..."
+                    : "Envoi en cours..."}
                 </>
               ) : (
                 <>
@@ -148,23 +150,27 @@ const ContactForm = () => {
             </button>
 
             {/* Messages de statut */}
-            {status === 'success' && (
+            {status === "success" && (
               <div className="p-4 bg-green-100 dark:bg-green-900/20 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-400 rounded-lg">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5" />
                   <p className="font-medium">Message envoyé avec succès ! 🎉</p>
                 </div>
-                <p className="text-sm mt-1">Je vous répondrai dans les plus brefs délais.</p>
+                <p className="text-sm mt-1">
+                  Je vous répondrai dans les plus brefs délais.
+                </p>
               </div>
             )}
 
-            {status === 'error' && (
+            {status === "error" && (
               <div className="p-4 bg-red-100 dark:bg-red-900/20 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-400 rounded-lg">
                 <div className="flex items-center gap-2">
                   <AlertCircle className="w-5 h-5" />
                   <p className="font-medium">Erreur lors de l'envoi 😕</p>
                 </div>
-                <p className="text-sm mt-1">Veuillez réessayer ou me contacter directement.</p>
+                <p className="text-sm mt-1">
+                  Veuillez réessayer ou me contacter directement.
+                </p>
               </div>
             )}
           </form>

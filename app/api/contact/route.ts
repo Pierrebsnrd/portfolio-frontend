@@ -1,9 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
-import { ContactFormData } from '../../../app/types/index';
+import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+import { ContactFormData } from "../../../app/types/index";
 
 // Template HTML pour votre notification
-function generateContactEmailHTML(name: string, email: string, message: string): string {
+function generateContactEmailHTML(
+  name: string,
+  email: string,
+  message: string,
+): string {
   return `
     <!DOCTYPE html>
     <html>
@@ -37,11 +41,11 @@ function generateContactEmailHTML(name: string, email: string, message: string):
             </div>
             <div class="field">
               <div class="label">Message:</div>
-              <div class="message-box">${message.replace(/\n/g, '<br>')}</div>
+              <div class="message-box">${message.replace(/\n/g, "<br>")}</div>
             </div>
             <div class="field">
               <div class="label">Date:</div>
-              <div class="value">${new Date().toLocaleString('fr-FR')}</div>
+              <div class="value">${new Date().toLocaleString("fr-FR")}</div>
             </div>
           </div>
         </div>
@@ -82,7 +86,7 @@ function generateConfirmationEmailHTML(name: string, message: string): string {
             
             <p><strong>Résumé de votre message :</strong></p>
             <p style="background: white; padding: 10px; border-radius: 4px; font-style: italic;">
-              ${message.substring(0, 200)}${message.length > 200 ? '...' : ''}
+              ${message.substring(0, 200)}${message.length > 200 ? "..." : ""}
             </p>
             
             <div class="signature">
@@ -105,23 +109,20 @@ export async function POST(request: NextRequest) {
     // Validation basique
     if (!name || !email || !message) {
       return NextResponse.json(
-        { message: 'Tous les champs sont requis' },
-        { status: 400 }
+        { message: "Tous les champs sont requis" },
+        { status: 400 },
       );
     }
 
     // Validation email simple
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { message: 'Email invalide' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "Email invalide" }, { status: 400 });
     }
 
     // Configuration du transporteur Nodemailer
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -130,15 +131,15 @@ export async function POST(request: NextRequest) {
 
     // Vérifier que EMAIL_USER est défini
     if (!process.env.EMAIL_USER) {
-      throw new Error('Configuration EMAIL_USER manquante');
+      throw new Error("Configuration EMAIL_USER manquante");
     }
 
     try {
       // 1. Email de notification pour moi-même
       const notificationOptions = {
         from: {
-          name: 'Pierre Boisnard - Portfolio',
-          address: process.env.EMAIL_USER
+          name: "Pierre Boisnard - Portfolio",
+          address: process.env.EMAIL_USER,
         },
         to: process.env.EMAIL_USER,
         subject: `[Portfolio] Nouveau message de ${name}`,
@@ -152,18 +153,18 @@ export async function POST(request: NextRequest) {
           Message:
           ${message}
           
-          Date: ${new Date().toLocaleString('fr-FR')}
-        `
+          Date: ${new Date().toLocaleString("fr-FR")}
+        `,
       };
 
       // 2. Email de confirmation pour l'utilisateur
       const confirmationOptions = {
         from: {
-          name: 'Pierre Boisnard - Portfolio',
-          address: process.env.EMAIL_USER
+          name: "Pierre Boisnard - Portfolio",
+          address: process.env.EMAIL_USER,
         },
         to: email,
-        subject: 'Confirmation de réception de votre message',
+        subject: "Confirmation de réception de votre message",
         html: generateConfirmationEmailHTML(name, message),
         text: `
           Message bien reçu !
@@ -175,38 +176,39 @@ export async function POST(request: NextRequest) {
           J'ai bien reçu votre message et je vous répondrai dans les plus brefs délais (généralement sous 24h).
           
           Résumé de votre message :
-          ${message.substring(0, 200)}${message.length > 200 ? '...' : ''}
+          ${message.substring(0, 200)}${message.length > 200 ? "..." : ""}
           
           À bientôt,
           Pierre Boisnard
           Développeur Full-Stack
-        `
+        `,
       };
 
       // Envoi des deux emails
       await Promise.all([
         transporter.sendMail(notificationOptions),
-        transporter.sendMail(confirmationOptions)
+        transporter.sendMail(confirmationOptions),
       ]);
 
       return NextResponse.json(
-        { message: 'Message envoyé avec succès ! Vous recevrez une confirmation par email.' },
-        { status: 200 }
+        {
+          message:
+            "Message envoyé avec succès ! Vous recevrez une confirmation par email.",
+        },
+        { status: 200 },
       );
-
     } catch (emailError) {
-      console.error('Erreur lors de l\'envoi des emails:', emailError);
+      console.error("Erreur lors de l'envoi des emails:", emailError);
       return NextResponse.json(
-        { message: 'Erreur lors de l\'envoi du message' },
-        { status: 500 }
+        { message: "Erreur lors de l'envoi du message" },
+        { status: 500 },
       );
     }
-
   } catch (error) {
-    console.error('Erreur lors du traitement de la demande:', error);
+    console.error("Erreur lors du traitement de la demande:", error);
     return NextResponse.json(
-      { message: 'Erreur lors du traitement de votre message' },
-      { status: 500 }
+      { message: "Erreur lors du traitement de votre message" },
+      { status: 500 },
     );
   }
 }
