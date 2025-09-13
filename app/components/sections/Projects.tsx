@@ -12,48 +12,38 @@ const Projects: React.FC = () => {
     {
       id: 1,
       title: "Site Vitrine Sophrologie",
-      description:
-        "Site professionnel avec interface d'administration complète. Système de témoignages avec modération, formulaire de contact sécurisé et interface admin avec authentification JWT.",
-      technologies: [
-        "Next.js",
-        "React",
-        "CSS Modules",
-        "Node.js",
-        "Express",
-        "MongoDB",
-        "JWT",
-      ],
+      description: "Site professionnel avec interface d'administration complète. Système de témoignages avec modération, formulaire de contact sécurisé et interface admin avec authentification JWT.",
+      technologies: ["Next.js", "React", "CSS Modules", "Node.js", "Express", "MongoDB", "JWT"],
       category: "fullstack",
       githubFrontend: "https://github.com/Pierrebsnrd/sophrologie-frontend",
       githubBackend: "https://github.com/Pierrebsnrd/sophrologie-backend",
       demo: "https://www.sophrologuevillepreux.fr/",
       featured: true,
+      image: "/images/projects/sophrologie-preview.png"
     },
     {
       id: 2,
       title: "Trollen",
-      description:
-        "Application sociale immersive combinant chat anonyme et éléments RPG. Fonctionnalités de chat temps réel, système de personnages et interface mobile optimisée.",
+      description: "Application sociale immersive combinant chat anonyme et éléments RPG. Fonctionnalités de chat temps réel, système de personnages et interface mobile optimisée.",
       technologies: ["React Native", "Node.js", "Express", "MongoDB"],
       category: "mobile",
       githubFrontend: "https://github.com/Pierrebsnrd/trollen-frontend",
       githubBackend: "https://github.com/Pierrebsnrd/trollen-backend",
       demo: "#",
       featured: true,
+      /* image: "/images/projects/trollen-preview.jpg" */
     },
     {
       id: 3,
       title: "Hackatweet",
-      description:
-        "Mini réseau social type Twitter avec authentification utilisateur, publication de tweets en temps réel, système de likes et interface responsive moderne.",
+      description: "Mini réseau social type Twitter avec authentification utilisateur, publication de tweets en temps réel, système de likes et interface responsive moderne.",
       technologies: ["React", "Node.js", "Express", "MongoDB", "JavaScript"],
       category: "frontend",
-      githubFrontend:
-        "https://github.com/Pierrebsnrd/hackatweet/tree/main/frontend",
-      githubBackend:
-        "https://github.com/Pierrebsnrd/hackatweet/tree/main/backend",
+      githubFrontend: "https://github.com/Pierrebsnrd/hackatweet/tree/main/frontend",
+      githubBackend: "https://github.com/Pierrebsnrd/hackatweet/tree/main/backend",
       demo: "#",
       featured: false,
+     /*  image: "/images/projects/hackatweet-preview.jpg" */
     },
   ];
 

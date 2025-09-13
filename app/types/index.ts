@@ -9,6 +9,7 @@ export interface Project {
   githubBackend?: string;
   demo?: string;
   featured: boolean;
+  image?: string;
 }
 
 // Types pour les filtres de projets
