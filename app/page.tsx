@@ -4,7 +4,7 @@ import Navbar from './components/layout/Navbar';
 import HeroSection from './components/sections/HeroSection';
 import About from './components/sections/About';
 import Projects from './components/sections/Projects';
-import ContactForm from './components/forms/ContactForm';
+import ContactForm from './components/ui/ContactForm';
 import Footer from './components/layout/Footer';
 import { useDarkMode } from './hooks/useDarkMode';
 import { useScrollToSection } from './hooks/useScrollToSection';
