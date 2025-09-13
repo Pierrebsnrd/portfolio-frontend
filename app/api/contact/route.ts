@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { ContactFormData } from '../../../app/types/index';
 
-// Template HTML pour votre notification (repris de votre EmailService)
+// Template HTML pour votre notification
 function generateContactEmailHTML(name: string, email: string, message: string): string {
   return `
     <!DOCTYPE html>
@@ -50,7 +50,7 @@ function generateContactEmailHTML(name: string, email: string, message: string):
   `;
 }
 
-// Template HTML pour la confirmation utilisateur (repris de votre EmailService)
+// Template HTML pour la confirmation utilisateur
 function generateConfirmationEmailHTML(name: string, message: string): string {
   return `
     <!DOCTYPE html>
@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      // 1. Email de notification pour vous
+      // 1. Email de notification pour moi-même
       const notificationOptions = {
         from: {
           name: 'Pierre Boisnard - Portfolio',
