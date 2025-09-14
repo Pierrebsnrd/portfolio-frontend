@@ -2,7 +2,14 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Github, ExternalLink, Star, X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  Star,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Project } from "../../../app/types/index";
 
 interface ProjectCardProps {
@@ -14,30 +21,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageError, setImageError] = useState<{ [key: string]: boolean }>({});
 
-  // Obtient toutes les images du projet
-  const getProjectImages = (): string[] => {
-    if (project.images && project.images.length > 0) {
-      return project.images;
-    }
-    if (project.image) {
-      return [project.image];
-    }
-    return ["/images/projects/placeholder.svg"];
-  };
+  const projectImages =
+    project.images && project.images.length > 0
+      ? project.images
+      : ["/images/projects/placeholder.svg"];
 
-  const projectImages = getProjectImages();
   const totalImages = projectImages.length;
 
-  // Fonction pour obtenir l'image principale (première image ou placeholder)
   const getMainImageSrc = () => {
     const mainImage = projectImages[0];
-    if (mainImage && !imageError[mainImage]) {
-      return mainImage;
-    }
+    if (mainImage && !imageError[mainImage]) return mainImage;
     return "/images/projects/placeholder.svg";
   };
 
-  // Navigation dans la galerie
+  const handleImageError = (src: string) => {
+    setImageError((prev) => ({ ...prev, [src]: true }));
+  };
+
+  const openModal = () => {
+    setCurrentImageIndex(0);
+    setShowModal(true);
+  };
+
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentImageIndex((prev) => (prev + 1) % totalImages);
@@ -53,11 +58,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     setCurrentImageIndex(index);
   };
 
-  const handleImageError = (imageSrc: string) => {
-    setImageError(prev => ({ ...prev, [imageSrc]: true }));
-  };
-
-  const getCategoryColor = (category: Project["category"]): string => {
+  const getCategoryColor = (category: Project["category"]) => {
     switch (category) {
       case "fullstack":
         return "bg-gradient-to-r from-blue-500 to-purple-500";
@@ -72,7 +73,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     }
   };
 
-  const getCategoryText = (category: Project["category"]): string => {
+  const getCategoryText = (category: Project["category"]) => {
     switch (category) {
       case "fullstack":
         return "Full Stack";
@@ -87,20 +88,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     }
   };
 
-  const openModal = () => {
-    setCurrentImageIndex(0);
-    setShowModal(true);
-  };
-
-  // Détermine si on utilise le placeholder
-  const isUsingPlaceholder = getMainImageSrc() === "/images/projects/placeholder.svg";
+  const isUsingPlaceholder =
+    getMainImageSrc() === "/images/projects/placeholder.svg";
 
   return (
     <>
       <div className="group relative bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
-        
-        {/* IMAGE DE PREVIEW */}
-        <div 
+        {/* IMAGE PRINCIPALE */}
+        <div
           className="relative h-48 w-full overflow-hidden cursor-pointer"
           onClick={openModal}
         >
@@ -112,28 +107,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             onError={() => handleImageError(getMainImageSrc())}
             priority={project.featured}
-            unoptimized={true}
+            unoptimized
           />
-          
+
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          
-          {/* Indicateur multiple images */}
-          {totalImages > 1 && !isUsingPlaceholder && (
-            <div className="absolute top-4 right-4 z-10">
-              <div className="bg-black/60 backdrop-blur-sm text-white px-2 py-1 rounded text-xs font-medium flex items-center gap-1">
-                <div className="w-3 h-3 grid grid-cols-2 gap-0.5">
-                  <div className="w-1 h-1 bg-white rounded-full"></div>
-                  <div className="w-1 h-1 bg-white rounded-full"></div>
-                  <div className="w-1 h-1 bg-white rounded-full"></div>
-                  <div className="w-1 h-1 bg-white rounded-full"></div>
-                </div>
-                {totalImages}
-              </div>
-            </div>
-          )}
-          
-          {/* Featured badge */}
+
+          {/* Badge mis en avant */}
           {project.featured && (
             <div className="absolute top-4 left-4 z-10">
               <div className="bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 backdrop-blur-sm">
@@ -142,8 +122,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               </div>
             </div>
           )}
-          
-          {/* Category badge */}
+
+          {/* Badge catégorie */}
           <div className="absolute bottom-4 left-4">
             <span
               className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white ${getCategoryColor(project.category)} backdrop-blur-sm`}
@@ -152,7 +132,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </span>
           </div>
 
-          {/* Indicateur de placeholder */}
+          {/* Badge placeholder */}
           {isUsingPlaceholder && (
             <div className="absolute top-4 left-4 z-10">
               <div className="bg-gray-500/80 backdrop-blur-sm text-white px-2 py-1 rounded text-xs font-medium">
@@ -162,131 +142,110 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           )}
         </div>
 
+        {/* CONTENU */}
         <div className="p-6">
-          {/* Project title */}
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
             {project.title}
           </h3>
 
-          {/* Project description */}
           <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
             {project.description}
           </p>
 
           {/* Technologies */}
-          <div className="mb-6">
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md text-sm font-medium"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+          <div className="mb-6 flex flex-wrap gap-2">
+            {project.technologies.map((tech, i) => (
+              <span
+                key={i}
+                className="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md text-sm font-medium"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
 
-          {/* Action buttons */}
+          {/* Actions */}
           <div className="flex flex-wrap gap-3">
-            {/* GitHub Frontend */}
             {project.githubFrontend && project.githubFrontend !== "#" && (
               <a
                 href={project.githubFrontend}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors text-sm font-medium"
-                aria-label={`Voir le code frontend de ${project.title}`}
               >
-                <Github className="w-4 h-4" />
-                <span>Frontend</span>
+                <Github className="w-4 h-4" /> Frontend
               </a>
             )}
-
-            {/* GitHub Backend */}
             {project.githubBackend && project.githubBackend !== "#" && (
               <a
                 href={project.githubBackend}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg transition-colors text-sm font-medium"
-                aria-label={`Voir le code backend de ${project.title}`}
               >
-                <Github className="w-4 h-4" />
-                <span>Backend</span>
+                <Github className="w-4 h-4" /> Backend
               </a>
             )}
-
-            {/* Demo */}
             {project.demo && project.demo !== "#" && (
               <a
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-3 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg transition-all text-sm font-medium"
-                aria-label={`Voir la démonstration de ${project.title}`}
               >
-                <ExternalLink className="w-4 h-4" />
-                <span>Demo</span>
+                <ExternalLink className="w-4 h-4" /> Demo
               </a>
             )}
           </div>
         </div>
       </div>
 
-      {/* MODAL GALERIE D'IMAGES */}
+      {/* MODAL */}
       {showModal && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           onClick={() => setShowModal(false)}
         >
-          <div 
+          <div
             className="relative max-w-6xl max-h-[95vh] w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Bouton fermer */}
             <button
               onClick={() => setShowModal(false)}
               className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
-              aria-label="Fermer la galerie"
             >
               <X className="w-8 h-8" />
             </button>
-            
-            {/* Compteur d'images */}
+
             {totalImages > 1 && (
               <div className="absolute -top-12 left-0 text-white text-sm">
                 {currentImageIndex + 1} / {totalImages}
               </div>
             )}
 
-            {/* Conteneur principal de l'image */}
             <div className="relative w-full h-[80vh] bg-gray-900 rounded-lg overflow-hidden">
               <Image
-                src={projectImages[currentImageIndex] || "/images/projects/placeholder.svg"}
+                src={projectImages[currentImageIndex]}
                 alt={`${project.title} - Image ${currentImageIndex + 1}`}
                 fill
                 className="object-contain"
-                sizes="95vw"
-                onError={() => handleImageError(projectImages[currentImageIndex])}
-                unoptimized={true}
+                unoptimized
+                onError={() =>
+                  handleImageError(projectImages[currentImageIndex])
+                }
               />
 
-              {/* Navigation - Flèches */}
               {totalImages > 1 && (
                 <>
                   <button
                     onClick={prevImage}
                     className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all backdrop-blur-sm"
-                    aria-label="Image précédente"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
-                  
                   <button
                     onClick={nextImage}
                     className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all backdrop-blur-sm"
-                    aria-label="Image suivante"
                   >
                     <ChevronRight className="w-6 h-6" />
                   </button>
@@ -297,30 +256,28 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             {/* Miniatures */}
             {totalImages > 1 && (
               <div className="flex justify-center mt-4 gap-2 px-4 overflow-x-auto">
-                {projectImages.map((imageSrc, index) => (
+                {projectImages.map((src, index) => (
                   <button
                     key={index}
                     onClick={(e) => goToImage(index, e)}
                     className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
                       index === currentImageIndex
-                        ? 'border-blue-500 ring-2 ring-blue-500/50'
-                        : 'border-gray-600 hover:border-gray-400'
+                        ? "border-blue-500 ring-2 ring-blue-500/50"
+                        : "border-gray-600 hover:border-gray-400"
                     }`}
                   >
                     <Image
-                      src={imageSrc}
+                      src={src}
                       alt={`Miniature ${index + 1}`}
                       fill
                       className="object-cover"
-                      sizes="64px"
-                      unoptimized={true}
+                      unoptimized
                     />
                   </button>
                 ))}
               </div>
             )}
-            
-            {/* Informations du projet */}
+
             <div className="mt-6 text-white text-center">
               <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
               <p className="text-gray-300 mb-4">{project.description}</p>

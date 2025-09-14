@@ -1,6 +1,16 @@
 "use client";
 
-import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin, Loader2 } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  AlertCircle,
+  Github,
+  Linkedin,
+  Loader2,
+} from "lucide-react";
 import { useContactForm } from "../../hooks/useContactForm";
 
 const ContactForm = () => {
@@ -16,8 +26,8 @@ const ContactForm = () => {
   } = useContactForm();
 
   return (
-    <section 
-      id="contact" 
+    <section
+      id="contact"
       className="pt-16 min-h-screen bg-gray-50 dark:bg-gray-800 flex items-center"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
@@ -27,8 +37,8 @@ const ContactForm = () => {
             Contactez-moi
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Vous avez un projet en tête ? N'hésitez pas à me contacter pour discuter 
-            de vos besoins et voir comment nous pouvons collaborer.
+            Vous avez un projet en tête ? N'hésitez pas à me contacter pour
+            discuter de vos besoins et voir comment nous pouvons collaborer.
           </p>
         </div>
 
@@ -39,7 +49,7 @@ const ContactForm = () => {
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
                 Restons en contact
               </h3>
-              
+
               <div className="space-y-6">
                 {/* Email */}
                 <div className="flex items-center gap-4">
@@ -47,9 +57,11 @@ const ContactForm = () => {
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Email</p>
-                    <a 
-                      href="mailto:pierre.boisnard@live.fr" 
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      Email
+                    </p>
+                    <a
+                      href="mailto:pierre.boisnard@live.fr"
                       className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                     >
                       pierre.boisnard@live.fr
@@ -63,9 +75,11 @@ const ContactForm = () => {
                     <Phone className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Téléphone</p>
-                    <a 
-                      href="tel:+33611705622" 
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      Téléphone
+                    </p>
+                    <a
+                      href="tel:+33611705622"
                       className="text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                     >
                       06 11 70 56 22
@@ -79,7 +93,9 @@ const ContactForm = () => {
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Localisation</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">
+                      Localisation
+                    </p>
                     <p className="text-lg font-medium text-gray-900 dark:text-white">
                       Région Parisienne, France
                     </p>
@@ -114,15 +130,15 @@ const ContactForm = () => {
             </div>
 
             {/* Disponibilité */}
-            {/* <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-6 text-white">
+            <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-6 text-white">
               <h4 className="text-lg font-semibold mb-2">
                 🚀 Disponible pour de nouveaux projets
               </h4>
               <p className="opacity-90">
-                Je suis actuellement disponible pour des missions freelance. 
+                Je suis actuellement disponible pour des missions freelance.
                 N'hésitez pas à me contacter pour discuter de votre projet !
               </p>
-            </div> */}
+            </div>
           </div>
 
           {/* Formulaire de contact */}
@@ -130,8 +146,8 @@ const ContactForm = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Nom */}
               <div>
-                <label 
-                  htmlFor="name" 
+                <label
+                  htmlFor="name"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
                   Nom complet *
@@ -162,8 +178,8 @@ const ContactForm = () => {
 
               {/* Email */}
               <div>
-                <label 
-                  htmlFor="email" 
+                <label
+                  htmlFor="email"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
                   Email *
@@ -194,8 +210,8 @@ const ContactForm = () => {
 
               {/* Message */}
               <div>
-                <label 
-                  htmlFor="message" 
+                <label
+                  htmlFor="message"
                   className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                 >
                   Message *
@@ -241,7 +257,9 @@ const ContactForm = () => {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    {status === "validating" ? "Validation..." : "Envoi en cours..."}
+                    {status === "validating"
+                      ? "Validation..."
+                      : "Envoi en cours..."}
                   </>
                 ) : (
                   <>
@@ -256,7 +274,9 @@ const ContactForm = () => {
                 <div className="p-4 bg-green-100 dark:bg-green-900/20 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-400 rounded-lg">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5" />
-                    <p className="font-medium">Message envoyé avec succès ! 🎉</p>
+                    <p className="font-medium">
+                      Message envoyé avec succès ! 🎉
+                    </p>
                   </div>
                   <p className="text-sm mt-1">
                     Je vous répondrai dans les plus brefs délais.
