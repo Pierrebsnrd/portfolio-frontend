@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle, Github, Linkedin, Loader2 } from "lucide-react";
 import { useContactForm } from "../../hooks/useContactForm";
 
 const ContactForm = () => {
@@ -8,6 +8,8 @@ const ContactForm = () => {
     formData,
     status,
     errors,
+    isValid,
+    isSubmitting,
     handleChange,
     handleBlur,
     handleSubmit,
@@ -51,6 +53,22 @@ const ContactForm = () => {
                       className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                     >
                       pierre.boisnard@live.fr
+                    </a>
+                  </div>
+                </div>
+
+                {/* Téléphone */}
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Téléphone</p>
+                    <a 
+                      href="tel:+33611705622" 
+                      className="text-base font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    >
+                      06 11 70 56 22
                     </a>
                   </div>
                 </div>
@@ -125,13 +143,17 @@ const ContactForm = () => {
                   value={formData.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-colors ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                           bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                           transition-colors duration-200 ${
+                             errors.name
+                               ? "border-red-500 dark:border-red-400"
+                               : "border-gray-300 dark:border-gray-600"
+                           }`}
                   placeholder="Votre nom et prénom"
                 />
                 {errors.name && (
-                  <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                  <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
                     <AlertCircle className="w-4 h-4" />
                     {errors.name}
                   </p>
@@ -153,13 +175,17 @@ const ContactForm = () => {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-colors ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                           bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                           transition-colors duration-200 ${
+                             errors.email
+                               ? "border-red-500 dark:border-red-400"
+                               : "border-gray-300 dark:border-gray-600"
+                           }`}
                   placeholder="votre@email.com"
                 />
                 {errors.email && (
-                  <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                  <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
                     <AlertCircle className="w-4 h-4" />
                     {errors.email}
                   </p>
@@ -181,33 +207,41 @@ const ContactForm = () => {
                   value={formData.message}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white transition-colors resize-none ${
-                    errors.message ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                           bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                           transition-colors duration-200 resize-none ${
+                             errors.message
+                               ? "border-red-500 dark:border-red-400"
+                               : "border-gray-300 dark:border-gray-600"
+                           }`}
                   placeholder="Décrivez votre projet ou vos besoins..."
                 />
                 {errors.message && (
-                  <p className="mt-2 text-sm text-red-600 flex items-center gap-1">
+                  <p className="mt-2 text-sm text-red-600 dark:text-red-400 flex items-center gap-1">
                     <AlertCircle className="w-4 h-4" />
                     {errors.message}
                   </p>
                 )}
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                  {formData.message.length}/1000 caractères
+                </p>
               </div>
 
               {/* Bouton d'envoi */}
               <button
                 type="submit"
-                disabled={status === "loading"}
-                className={`w-full px-6 py-4 rounded-lg font-semibold text-white transition-all transform hover:scale-105 flex items-center justify-center gap-2 ${
-                  status === "loading"
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg"
-                }`}
+                disabled={!isValid || isSubmitting}
+                className={`w-full flex items-center justify-center gap-2 px-6 py-4 rounded-lg font-semibold
+                         transition-all duration-200 ${
+                           isValid && !isSubmitting
+                             ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white transform hover:scale-[1.02] shadow-lg"
+                             : "bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                         }`}
               >
-                {status === "loading" ? (
+                {isSubmitting ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Envoi en cours...
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    {status === "validating" ? "Validation..." : "Envoi en cours..."}
                   </>
                 ) : (
                   <>
@@ -219,24 +253,24 @@ const ContactForm = () => {
 
               {/* Messages de statut */}
               {status === "success" && (
-                <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-                  <div className="flex items-center gap-2 text-green-800 dark:text-green-200">
+                <div className="p-4 bg-green-100 dark:bg-green-900/20 border border-green-400 dark:border-green-700 text-green-700 dark:text-green-400 rounded-lg">
+                  <div className="flex items-center gap-2">
                     <CheckCircle className="w-5 h-5" />
-                    <p className="font-medium">Message envoyé avec succès !</p>
+                    <p className="font-medium">Message envoyé avec succès ! 🎉</p>
                   </div>
-                  <p className="text-sm text-green-600 dark:text-green-300 mt-1">
+                  <p className="text-sm mt-1">
                     Je vous répondrai dans les plus brefs délais.
                   </p>
                 </div>
               )}
 
               {status === "error" && (
-                <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-                  <div className="flex items-center gap-2 text-red-800 dark:text-red-200">
+                <div className="p-4 bg-red-100 dark:bg-red-900/20 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-400 rounded-lg">
+                  <div className="flex items-center gap-2">
                     <AlertCircle className="w-5 h-5" />
-                    <p className="font-medium">Erreur lors de l'envoi</p>
+                    <p className="font-medium">Erreur lors de l'envoi 😕</p>
                   </div>
-                  <p className="text-sm text-red-600 dark:text-red-300 mt-1">
+                  <p className="text-sm mt-1">
                     Veuillez réessayer ou me contacter directement.
                   </p>
                 </div>

@@ -21,9 +21,9 @@ const Projects: React.FC = () => {
       featured: true,
       images: [
         "/images/projects/sophrologie/image-1.png",
-        "/images/projects/sophrologie/image-2.png",
+/*         "/images/projects/sophrologie/image-2.png",
         "/images/projects/sophrologie/image-3.png",
-        "/images/projects/sophrologie/image-4.png"
+        "/images/projects/sophrologie/image-4.png" */
       ]
     },
     {
@@ -37,8 +37,8 @@ const Projects: React.FC = () => {
       demo: "#",
       featured: true,
       images: [
-        "/images/projects/trollen/image-1.png",
-        "/images/projects/trollen/image-2.png"
+/*         "/images/projects/trollen/image-1.png",
+        "/images/projects/trollen/image-2.png" */
       ]
     },
     {
@@ -52,9 +52,9 @@ const Projects: React.FC = () => {
       demo: "#",
       featured: false,
       images: [
-        "/images/projects/hackatweet/image-1.png",
+/*         "/images/projects/hackatweet/image-1.png",
         "/images/projects/hackatweet/image-2.png", 
-        "/images/projects/hackatweet/image-3.png"
+        "/images/projects/hackatweet/image-3.png" */
       ]
     }
   ];
