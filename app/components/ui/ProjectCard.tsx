@@ -2,7 +2,14 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Github, ExternalLink, Star, X, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  Star,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { Project } from "../../../app/types/index";
 
 interface ProjectCardProps {
@@ -120,7 +127,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <div className="absolute bottom-4 left-4">
             <span
               className={`inline-block px-3 py-1 rounded-full text-xs font-semibold text-white ${getCategoryColor(
-                project.category
+                project.category,
               )} backdrop-blur-sm`}
             >
               {getCategoryText(project.category)}
@@ -149,16 +156,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
           {/* Technologies */}
           <div className="mb-6 flex flex-wrap gap-2">
-            {(showAllTech ? project.technologies : project.technologies.slice(0, 4)).map(
-              (tech, i) => (
-                <span
-                  key={i}
-                  className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-md text-xs font-medium"
-                >
-                  {tech}
-                </span>
-              )
-            )}
+            {(showAllTech
+              ? project.technologies
+              : project.technologies.slice(0, 4)
+            ).map((tech, i) => (
+              <span
+                key={i}
+                className="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-md text-xs font-medium"
+              >
+                {tech}
+              </span>
+            ))}
             {project.technologies.length > 4 && !showAllTech && (
               <button
                 onClick={() => setShowAllTech(true)}
@@ -257,10 +265,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   <button
                     key={index}
                     onClick={(e) => goToImage(index, e)}
-                    className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${index === currentImageIndex
+                    className={`relative w-16 h-16 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                      index === currentImageIndex
                         ? "border-blue-500 ring-2 ring-blue-500/50"
                         : "border-gray-600 hover:border-gray-400"
-                      }`}
+                    }`}
                   >
                     <Image
                       src={src}

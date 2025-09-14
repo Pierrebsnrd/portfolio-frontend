@@ -24,7 +24,6 @@ const Contact = () => {
     handleChange,
     handleBlur,
     handleSubmit,
-    resetForm,
   } = useContactForm();
 
   return (
@@ -126,7 +125,9 @@ const Contact = () => {
 
                 {/* Disponibilité */}
                 <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-4 text-white mt-4">
-                  <p className="font-semibold">🚀 Disponible pour de nouveaux projets</p>
+                  <p className="font-semibold">
+                    🚀 Disponible pour de nouveaux projets
+                  </p>
                   <p className="text-sm opacity-90">
                     Je suis actuellement disponible pour des missions freelance.
                     N'hésitez pas à me contacter !
@@ -242,8 +243,8 @@ const Contact = () => {
                 )}
                 {status === "error" && (
                   <div className="p-4 bg-red-100 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg flex items-center gap-2 text-red-700 dark:text-red-300">
-                    <AlertCircle className="w-5 h-5" /> Erreur lors de
-                    l'envoi. Veuillez réessayer.
+                    <AlertCircle className="w-5 h-5" /> Erreur lors de l'envoi.
+                    Veuillez réessayer.
                   </div>
                 )}
 

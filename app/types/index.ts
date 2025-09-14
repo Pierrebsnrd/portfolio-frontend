@@ -11,7 +11,6 @@ export interface Project {
   featured: boolean;
   images?: string[];
   image?: string;
-  
 }
 
 // Types pour les filtres de projets
