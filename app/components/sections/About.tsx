@@ -1,61 +1,87 @@
 "use client";
 
-import { Code, Database, Globe, Smartphone, Users } from "lucide-react";
+import { 
+  Code, 
+  Globe, 
+  Smartphone, 
+  Users, 
+  Server,
+  Palette,
+  Zap
+} from "lucide-react";
 
 const About = () => {
-  const skills = [
+  const skillsData = [
     {
       category: "Frontend",
-      icon: <Globe className="w-6 h-6" />,
+      icon: <Globe className="w-5 h-5" />,
       technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML5", "CSS3"],
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-50 dark:bg-blue-900/20"
     },
     {
       category: "Backend", 
-      icon: <Database className="w-6 h-6" />,
+      icon: <Server className="w-5 h-5" />,
       technologies: ["Node.js", "Express", "MongoDB", "REST API", "JWT"],
-      color: "from-green-500 to-emerald-500"
+      color: "from-green-500 to-emerald-500",
+      bgColor: "bg-green-50 dark:bg-green-900/20"
     },
     {
       category: "Mobile",
-      icon: <Smartphone className="w-6 h-6" />,
+      icon: <Smartphone className="w-5 h-5" />,
       technologies: ["React Native", "Expo"],
-      color: "from-purple-500 to-pink-500"
+      color: "from-purple-500 to-pink-500",
+      bgColor: "bg-purple-50 dark:bg-purple-900/20"
     },
     {
       category: "Outils",
-      icon: <Code className="w-6 h-6" />,
+      icon: <Code className="w-5 h-5" />,
       technologies: ["Git", "GitHub", "VS Code", "Postman", "Figma"],
-      color: "from-orange-500 to-red-500"
+      color: "from-orange-500 to-red-500",
+      bgColor: "bg-orange-50 dark:bg-orange-900/20"
+    },
+    {
+      category: "Design",
+      icon: <Palette className="w-5 h-5" />,
+      technologies: ["UI/UX", "Responsive Design", "Animations"],
+      color: "from-pink-500 to-rose-500",
+      bgColor: "bg-pink-50 dark:bg-pink-900/20"
+    },
+    {
+      category: "Performance",
+      icon: <Zap className="w-5 h-5" />,
+      technologies: ["Optimisation", "SEO", "PWA"],
+      color: "from-yellow-500 to-amber-500",
+      bgColor: "bg-yellow-50 dark:bg-yellow-900/20"
     }
   ];
 
   return (
     <section 
       id="about" 
-      className="pt-16 min-h-screen bg-gray-50 dark:bg-gray-800 flex items-center"
+      className="pt-20 pb-16 bg-gray-50 dark:bg-gray-800"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* En-tête de section */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             À Propos de Moi
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Développeur passionné avec une approche moderne du développement web. 
-            J'aime créer des expériences utilisateur exceptionnelles et des solutions techniques robustes.
+            J'aime créer des expériences utilisateur exceptionnelles.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Présentation personnelle */}
-          <div className="space-y-6">
-            <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-xl">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-3">
-                <Users className="w-7 h-7 text-blue-600" />
+        <div className="grid lg:grid-cols-5 gap-8">
+          {/* Présentation personnelle - 2 colonnes */}
+          <div className="lg:col-span-2">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg h-full">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <Users className="w-6 h-6 text-blue-600" />
                 Mon Parcours
               </h3>
-              <div className="space-y-4 text-gray-600 dark:text-gray-300">
+              <div className="space-y-3 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
                 <p>
                   Passionné par le développement web depuis plusieurs années, j'ai acquis une solide 
                   expérience dans la création d'applications web modernes et performantes.
@@ -72,33 +98,33 @@ const About = () => {
             </div>
           </div>
 
-          {/* Compétences */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-              <Code className="w-7 h-7 text-purple-600" />
+          {/* Compétences - 3 colonnes avec grille 2x3 */}
+          <div className="lg:col-span-3">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+              <Code className="w-6 h-6 text-purple-600" />
               Mes Compétences
             </h3>
             
-            <div className="grid gap-6">
-              {skills.map((skill, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {skillsData.map((skill, index) => (
                 <div
                   key={index}
-                  className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                  className={`${skill.bgColor} border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:shadow-md transition-all duration-300 group`}
                 >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`p-3 rounded-lg bg-gradient-to-r ${skill.color} text-white group-hover:scale-110 transition-transform`}>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className={`p-2 rounded-lg bg-gradient-to-r ${skill.color} text-white group-hover:scale-110 transition-transform`}>
                       {skill.icon}
                     </div>
-                    <h4 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white">
                       {skill.category}
                     </h4>
                   </div>
                   
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1">
                     {skill.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                        className="px-2 py-1 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md text-xs font-medium border border-gray-200 dark:border-gray-600"
                       >
                         {tech}
                       </span>
