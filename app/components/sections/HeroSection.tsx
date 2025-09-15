@@ -59,7 +59,7 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
         </p>
 
         {/* Boutons CTA */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-12">
           <button
             onClick={() => scrollToSection("projects")}
             className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"

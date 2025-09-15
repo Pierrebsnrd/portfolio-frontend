@@ -109,7 +109,7 @@ const Projects = () => {
 
         {/* Filtres */}
         <div className="flex justify-center mb-10">
-          <div className="flex gap-2 p-1 bg-gray-100 dark:bg-gray-800 rounded-xl">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12 overflow-x-auto max-w-full">
             {filters.map((filter) => (
               <button
                 key={filter.key}
