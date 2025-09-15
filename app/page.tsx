@@ -29,7 +29,7 @@ export default function Home() {
         toggleDarkMode={toggleDarkMode}
         scrollToSection={scrollToSection}
       />
-      <main className="min-h-screen">
+      <main>
         <HeroSection scrollToSection={scrollToSection} />
         <About />
         <Projects />

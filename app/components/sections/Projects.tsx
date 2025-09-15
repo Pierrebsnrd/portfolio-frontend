@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Filter, Code, Database, Globe, Smartphone } from "lucide-react";
 import ProjectCard from "../ui/ProjectCard";
-import type { Project, ProjectFilter } from "@/app/types"; // Correction d'import des types
+import type { Project, ProjectFilter } from "@/app/types";
 
 const projects: Project[] = [
   {
@@ -25,12 +25,7 @@ const projects: Project[] = [
     githubBackend: "https://github.com/Pierrebsnrd/sophrologie-backend",
     demo: "https://www.sophrologuevillepreux.fr/",
     featured: true,
-    images: [
-      "/images/projects/sophrologie/image-1.png",
-      // "/images/projects/sophrologie/image-2.png",
-      // "/images/projects/sophrologie/image-3.png",
-      // "/images/projects/sophrologie/image-4.png"
-    ],
+    images: ["/images/projects/sophrologie/image-1.png"],
   },
   {
     id: 2,
@@ -107,21 +102,21 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Filtres */}
-        <div className="flex justify-center mb-10">
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12 overflow-x-auto max-w-full">
+        {/* Filtres - CORRECTION APPLIQUÉE */}
+        <div className="flex justify-center mb-12">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 p-2">
             {filters.map((filter) => (
               <button
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-3 rounded-lg font-medium transition-all duration-200 text-sm sm:text-base min-h-[44px] ${
                   activeFilter === filter.key
-                    ? "bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-md"
-                    : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg ring-2 ring-blue-500/30 transform scale-[1.02]"
+                    : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-md"
                 }`}
               >
-                {filter.icon}
-                {filter.label}
+                <span className="flex-shrink-0">{filter.icon}</span>
+                <span className="whitespace-nowrap">{filter.label}</span>
               </button>
             ))}
           </div>
@@ -133,6 +128,15 @@ const Projects = () => {
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
+
+        {/* Message si aucun projet */}
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-500 dark:text-gray-400 text-lg">
+              Aucun projet trouvé pour cette catégorie.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

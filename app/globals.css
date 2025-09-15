@@ -2,21 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================
+   VARIABLES CSS
+   ========================================== */
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-}
-
-html,
-body {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-body > div {
-  overflow-x: hidden;
-  max-width: 100vw;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +19,9 @@ body > div {
   }
 }
 
+/* ==========================================
+   RESET ET BASE
+   ========================================== */
 * {
   box-sizing: border-box;
   padding: 0;
@@ -35,6 +30,10 @@ body > div {
 
 html {
   scroll-behavior: smooth;
+  /* Prévention overflow scroll */
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  overflow-x: hidden;
 }
 
 body {
@@ -45,9 +44,79 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+
+  /* Layout flex pour footer en bas */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  /* Prévention overflow scroll */
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  overflow-x: hidden;
 }
 
-/* Custom scrollbar */
+/* ==========================================
+   LAYOUT PRINCIPAL
+   ========================================== */
+body > div {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  /* Contrôle du viewport mobile */
+  height: 100vh;
+  height: 100dvh;
+  overflow: auto;
+  overscroll-behavior: none;
+}
+
+main {
+  flex: 1;
+}
+
+/* ==========================================
+   SECTIONS
+   ========================================== */
+section {
+  /* Compensation navbar fixe */
+  scroll-margin-top: 4rem;
+
+  /* Transitions fluides */
+  transition: padding 0.3s ease;
+}
+
+/* Padding responsive (sauf home) */
+section:not(#home) {
+  @apply pt-16 md:pt-20;
+}
+
+/* Suppression des gaps entre sections */
+main > section:first-child {
+  margin-top: 0;
+}
+
+main > section:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   VIEWPORT MOBILE
+   ========================================== */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* ==========================================
+   SCROLLBARS
+   ========================================== */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -65,7 +134,7 @@ body {
   background: #a8a8a8;
 }
 
-/* Dark mode scrollbar */
+/* Dark mode */
 .dark ::-webkit-scrollbar-track {
   background: #2d3748;
 }
@@ -78,7 +147,9 @@ body {
   background: #718096;
 }
 
-/* Animations personnalisées */
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
 @keyframes float {
   0%,
   100% {
@@ -93,16 +164,6 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
-/* Gradient text hover effect */
-.gradient-text-hover {
-  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
-  background-size: 200% 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient-shift 3s ease infinite;
-}
-
 @keyframes gradient-shift {
   0%,
   100% {
@@ -113,18 +174,35 @@ body {
   }
 }
 
-/* Focus styles for accessibility */
+.gradient-text-hover {
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* ==========================================
+   ACCESSIBILITÉ
+   ========================================== */
 button:focus,
 a:focus {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
-/* Custom utilities */
+/* ==========================================
+   UTILITIES
+   ========================================== */
 .text-shadow {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .backdrop-blur-xs {
   backdrop-filter: blur(2px);
+}
+
+.section-spacing {
+  @apply py-12 sm:py-16 md:py-20;
 }
