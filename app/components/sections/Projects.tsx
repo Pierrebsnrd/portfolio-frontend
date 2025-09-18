@@ -63,6 +63,7 @@ const projects: Project[] = [
     githubFrontend: "https://github.com/Pierrebsnrd/portfolio-frontend",
     demo: "https://portfolio-frontend-neon-six.vercel.app/",
     featured: false,
+    images: ["/images/projects/portfolio/image-1.png", "/images/projects/portfolio/image-2.png"],
   },
 ];
 
