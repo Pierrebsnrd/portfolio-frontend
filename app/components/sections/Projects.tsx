@@ -25,7 +25,7 @@ const projects: Project[] = [
     githubBackend: "https://github.com/Pierrebsnrd/sophrologie-backend",
     demo: "https://www.sophrologuevillepreux.fr/",
     featured: true,
-    images: ["/images/projects/sophrologie/image-1.png"],
+    images: ["/images/projects/sophrologie/image-1.png", "/images/projects/sophrologie/image-2.png", "/images/projects/sophrologie/image-3.png", "/images/projects/sophrologie/image-4.png", "/images/projects/sophrologie/image-5.png", "/images/projects/sophrologie/image-6.png", "/images/projects/sophrologie/image-7.png", "/images/projects/sophrologie/image-8.png", "/images/projects/sophrologie/image-9.png"],
   },
   {
     id: 2,
@@ -51,6 +51,7 @@ const projects: Project[] = [
     githubBackend: "https://github.com/Pierrebsnrd/weather-app-plus-backend",
     demo: "https://weather-app-plus-frontend.vercel.app/",
     featured: false,
+    images: ["/images/projects/weather-app-plus/image-1.png", "/images/projects/weather-app-plus/image-2.png", "/images/projects/weather-app-plus/image-3.png", "/images/projects/weather-app-plus/image-4.png"],
   },
   {
     id: 4,
