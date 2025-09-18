@@ -110,6 +110,7 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center justify-center transition-transform hover:scale-110"
+                    aria-label="GitHub"
                   >
                     <Github className="w-6 h-6" />
                   </a>
@@ -118,6 +119,7 @@ const Contact = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-transform hover:scale-110"
+                    aria-label="LinkedIn"
                   >
                     <Linkedin className="w-6 h-6" />
                   </a>
@@ -229,7 +231,7 @@ const Contact = () => {
                       {errors.message}
                     </p>
                   )}
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                     {formData.message.length}/1000 caractères
                   </p>
                 </div>

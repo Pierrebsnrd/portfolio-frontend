@@ -158,7 +158,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             onError={() => handleImageError(getMainImageSrc())}
             priority={project.featured}
-            unoptimized={true}
           />
 
           {/* Overlay gradient */}
@@ -221,7 +220,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               </span>
             ))}
             {project.technologies.length > 4 && (
-              <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded text-xs">
+              <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded text-xs">
                 +{project.technologies.length - 4}
               </span>
             )}
@@ -316,7 +315,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 onError={() =>
                   handleImageError(projectImages[currentImageIndex])
                 }
-                unoptimized={true}
               />
 
               {/* NAVIGATION - BOUTONS AGRANDIS POUR MOBILE */}
@@ -361,7 +359,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                         fill
                         className="object-cover"
                         sizes="80px"
-                        unoptimized={true}
                       />
                     </button>
                   ))}

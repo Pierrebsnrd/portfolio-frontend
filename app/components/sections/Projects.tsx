@@ -134,7 +134,7 @@ const Projects = () => {
         {/* Message si aucun projet */}
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400 text-lg">
+            <p className="text-gray-600 dark:text-gray-300 text-lg">
               Aucun projet trouvé pour cette catégorie.
             </p>
           </div>

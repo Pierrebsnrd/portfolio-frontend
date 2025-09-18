@@ -31,7 +31,7 @@ const Footer = ({ scrollToTop }: FooterProps) => {
               <p className="text-gray-400 text-sm sm:text-base">
                 Développeur Full-Stack
               </p>
-              <p className="text-gray-500 text-xs sm:text-sm mt-1">
+              <p className="text-gray-400 text-xs sm:text-sm mt-1">
                 Disponible pour vos projets
               </p>
             </div>
@@ -72,7 +72,7 @@ const Footer = ({ scrollToTop }: FooterProps) => {
               <p className="text-gray-400 text-xs sm:text-sm">
                 © 2025 Pierre Boisnard. Tous droits réservés.
               </p>
-              <p className="text-gray-500 text-xs sm:text-sm">
+              <p className="text-gray-400 text-xs sm:text-sm">
                 Développé avec React & Next.js
               </p>
             </div>

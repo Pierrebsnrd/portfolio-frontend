@@ -65,13 +65,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Manifest pour PWA */}
         <link rel="manifest" href="/manifest.json" />
 
-        {/* Préconnect aux domaines externes */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
 
         {/* Schema.org JSON-LD */}
         <script
