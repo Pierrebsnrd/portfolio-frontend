@@ -14,9 +14,8 @@ export const metadata: Metadata = {
   creator: "Pierre Boisnard",
   themeColor: "#3b82f6",
   icons: {
-    icon: "/icons/favicon-32x32.png",
-    apple: "/icons/apple-touch-icon.png",
-    shortcut: "/icons/favicon-32x32.png",
+    icon: "/icons/favicon-32x32.png",       // favicon onglet navigateur
+    apple: "/icons/apple-touch-icon.png",   // icône iOS / raccourci
   },
   openGraph: {
     title: "Pierre Boisnard - Développeur Full-Stack",
@@ -47,6 +46,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <head>
+        <link rel="shortcut icon" href="/icons/favicon-32x32.png" />
+        {/* Manifest pour PWA / ajout à l'écran */}
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={inter.className}>{children}</body>
