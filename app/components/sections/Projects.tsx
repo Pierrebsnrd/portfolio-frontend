@@ -19,6 +19,7 @@ const projects: Project[] = [
       "Express",
       "MongoDB",
       "JWT",
+      "Nodemailer",
     ],
     category: "fullstack",
     githubFrontend: "https://github.com/Pierrebsnrd/sophrologie-frontend",
@@ -32,7 +33,7 @@ const projects: Project[] = [
     title: "Trollen",
     description:
       "Application sociale immersive combinant chat anonyme et éléments RPG. Fonctionnalités de chat temps réel, système de personnages et interface mobile optimisée.",
-    technologies: ["React Native", "Node.js", "Express", "MongoDB"],
+    technologies: ["React Native", "Node.js", "Express", "MongoDB", "Socket.IO", "Expo", "Redux", "JWT"],
     category: "mobile",
     githubFrontend: "https://github.com/Pierrebsnrd/trollen-frontend",
     githubBackend: "https://github.com/Pierrebsnrd/trollen-backend",
@@ -45,7 +46,7 @@ const projects: Project[] = [
     title: "Weather App Plus",
     description:
       "Application météo avancée avec interface moderne et fonctionnalités étendues. Architecture full-stack avec frontend et backend séparés pour une expérience utilisateur optimisée.",
-    technologies: ["JavaScript", "React", "Node.js", "API REST"],
+    technologies: ["JavaScript", "React", "Node.js", "API REST", "Tailwind CSS", "Express", "MongoDB", "JWT"],
     category: "fullstack",
     githubFrontend: "https://github.com/Pierrebsnrd/weather-app-plus-frontend",
     githubBackend: "https://github.com/Pierrebsnrd/weather-app-plus-backend",
@@ -58,7 +59,7 @@ const projects: Project[] = [
     title: "Portfolio",
     description:
       "Portfolio personnel développé avec Next.js et TypeScript. Interface moderne avec animations, section projets dynamique et formulaire de contact intégré.",
-    technologies: ["TypeScript", "Next.js", "React", "Tailwind CSS", "Framer Motion"],
+    technologies: ["TypeScript", "Next.js", "React", "Tailwind CSS", "Framer Motion", "Nodemailer"],
     category: "frontend",
     githubFrontend: "https://github.com/Pierrebsnrd/portfolio-frontend",
     demo: "https://portfolio-frontend-neon-six.vercel.app/",
