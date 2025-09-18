@@ -1,10 +1,11 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://portfolio-frontend-neon-six.vercel.app"),
   title: "Pierre Boisnard - Développeur Full-Stack",
   description:
     "Portfolio de Pierre Boisnard, développeur full-stack spécialisé en React, Next.js, Node.js et MongoDB. Découvrez mes projets et réalisations.",
@@ -12,7 +13,6 @@ export const metadata: Metadata = {
     "développeur, full-stack, React, Next.js, Node.js, MongoDB, freelance, portfolio",
   authors: [{ name: "Pierre Boisnard" }],
   creator: "Pierre Boisnard",
-  themeColor: "#3b82f6",
   robots: "index, follow",
   alternates: {
     canonical: "https://portfolio-frontend-neon-six.vercel.app/",
@@ -53,6 +53,11 @@ export const metadata: Metadata = {
   },
 };
 
+// Déplacer themeColor ici
+export const viewport: Viewport = {
+  themeColor: "#3b82f6",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
@@ -62,7 +67,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Préconnect aux domaines externes */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
 
         {/* Schema.org JSON-LD */}
         <script
