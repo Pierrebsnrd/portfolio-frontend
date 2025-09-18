@@ -13,9 +13,19 @@ export const metadata: Metadata = {
   authors: [{ name: "Pierre Boisnard" }],
   creator: "Pierre Boisnard",
   themeColor: "#3b82f6",
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://portfolio-frontend-neon-six.vercel.app/",
+  },
   icons: {
-    icon: "/icons/favicon-32x32.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icons/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icons/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+    ],
     apple: "/icons/apple-touch-icon.png",
+    shortcut: "/icons/favicon-32x32.png",
   },
   openGraph: {
     title: "Pierre Boisnard - Développeur Full-Stack",
@@ -47,10 +57,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://portfolio-frontend-neon-six.vercel.app/" />
-        <link rel="shortcut icon" href="/icons/favicon-32x32.png" />
+        {/* Manifest pour PWA */}
+        <link rel="manifest" href="/manifest.json" />
+
+        {/* Préconnect aux domaines externes */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
@@ -62,14 +72,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Pierre Boisnard",
-              jobTitle: "Développeur Web",
-              description: "Développeur web spécialisé en React, Next.js, Node.js et MongoDB",
+              jobTitle: "Développeur Full-Stack",
+              description:
+                "Développeur web spécialisé en React, Next.js, Node.js et MongoDB",
               url: "https://portfolio-frontend-neon-six.vercel.app/",
               sameAs: [
                 "https://github.com/Pierrebsnrd",
-                "https://www.linkedin.com/in/pierre-boisnard-74514785/"
+                "https://www.linkedin.com/in/pierre-boisnard-74514785/",
               ],
-              knowsAbout: ["React","Next.js","Node.js","MongoDB","JavaScript","TypeScript"]
+              knowsAbout: [
+                "React",
+                "Next.js",
+                "Node.js",
+                "MongoDB",
+                "JavaScript",
+                "TypeScript",
+              ],
             }),
           }}
         />
