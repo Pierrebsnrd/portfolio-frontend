@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: "Pierre Boisnard - Développeur Full-Stack",
     description:
       "Portfolio de Pierre Boisnard, développeur full-stack spécialisé en React, Next.js, Node.js et MongoDB.",
-    url: "https://pierre-boisnard.vercel.app",
+    url: "https://portfolio-frontend-neon-six.vercel.app/",
     siteName: "Pierre Boisnard Portfolio",
     type: "website",
   },
