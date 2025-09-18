@@ -46,7 +46,7 @@ const projects: Project[] = [
     title: "Weather App Plus",
     description:
       "Application météo avancée avec interface moderne et fonctionnalités étendues. Architecture full-stack avec frontend et backend séparés pour une expérience utilisateur optimisée.",
-    technologies: ["JavaScript", "React", "Node.js", "API REST", "Tailwind CSS", "Express", "MongoDB", "JWT"],
+    technologies: ["React", "Node.js", "API REST", "Tailwind CSS", "Express", "MongoDB", "JWT"],
     category: "fullstack",
     githubFrontend: "https://github.com/Pierrebsnrd/weather-app-plus-frontend",
     githubBackend: "https://github.com/Pierrebsnrd/weather-app-plus-backend",
