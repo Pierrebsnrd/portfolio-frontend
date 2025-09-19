@@ -1,49 +1,22 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Metadata, Viewport } from "next";
+import { DefaultSeo } from "next-seo";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-frontend-neon-six.vercel.app"),
+const seoConfig = {
   title: "Pierre Boisnard - Développeur Full-Stack",
   description:
     "Portfolio de Pierre Boisnard, développeur full-stack spécialisé en React, Next.js, Node.js et MongoDB. Découvrez mes projets et réalisations.",
-  keywords:
-    "développeur, full-stack, React, Next.js, Node.js, MongoDB, freelance, portfolio",
-  authors: [{ name: "Pierre Boisnard" }],
-  creator: "Pierre Boisnard",
-  robots: "index, follow",
-  alternates: {
-    canonical: "https://portfolio-frontend-neon-six.vercel.app/",
-  },
-  manifest: "/manifest.json",
-  icons: {
-    icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icons/favicon-96x96.png", sizes: "96x96", type: "image/png" },
-    ],
-    shortcut: "/favicon.ico",
-    apple: "/icons/apple-touch-icon.png",
-  },
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "default",
-    title: "PB Portfolio",
-  },
-  formatDetection: {
-    telephone: false,
-  },
+  canonical: "https://portfolio-frontend-neon-six.vercel.app/",
   openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "https://portfolio-frontend-neon-six.vercel.app/",
+    site_name: "Pierre Boisnard Portfolio",
     title: "Pierre Boisnard - Développeur Full-Stack",
     description:
       "Portfolio de Pierre Boisnard, développeur full-stack spécialisé en React, Next.js, Node.js et MongoDB.",
-    url: "https://portfolio-frontend-neon-six.vercel.app/",
-    siteName: "Pierre Boisnard Portfolio",
-    type: "website",
-    locale: "fr_FR",
     images: [
       {
         url: "/images/og-image.jpg",
@@ -54,27 +27,89 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Pierre Boisnard - Développeur Full-Stack",
-    description:
-      "Portfolio de Pierre Boisnard, développeur full-stack spécialisé en React, Next.js, Node.js et MongoDB.",
-    images: ["/images/og-image.jpg"],
+    handle: "@pierreboisnard",
+    site: "@pierreboisnard",
+    cardType: "summary_large_image",
   },
-};
-
-// Déplacer themeColor ici
-export const viewport: Viewport = {
-  themeColor: "#3b82f6",
+  additionalMetaTags: [
+    {
+      name: "keywords",
+      content: "développeur, full-stack, React, Next.js, Node.js, MongoDB, freelance, portfolio",
+    },
+    {
+      name: "author",
+      content: "Pierre Boisnard",
+    },
+    {
+      name: "creator",
+      content: "Pierre Boisnard",
+    },
+    {
+      name: "robots",
+      content: "index, follow",
+    },
+    {
+      name: "apple-mobile-web-app-capable",
+      content: "yes",
+    },
+    {
+      name: "apple-mobile-web-app-status-bar-style",
+      content: "default",
+    },
+    {
+      name: "apple-mobile-web-app-title",
+      content: "PB Portfolio",
+    },
+    {
+      name: "theme-color",
+      content: "#3b82f6",
+    },
+  ],
+  additionalLinkTags: [
+    {
+      rel: "icon",
+      href: "/favicon.svg",
+      type: "image/svg+xml",
+    },
+    {
+      rel: "icon",
+      href: "/icons/favicon-16x16.png",
+      sizes: "16x16",
+      type: "image/png",
+    },
+    {
+      rel: "icon",
+      href: "/icons/favicon-32x32.png",
+      sizes: "32x32",
+      type: "image/png",
+    },
+    {
+      rel: "icon",
+      href: "/icons/favicon-96x96.png",
+      sizes: "96x96",
+      type: "image/png",
+    },
+    {
+      rel: "shortcut icon",
+      href: "/favicon.ico",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/icons/apple-touch-icon.png",
+      sizes: "180x180",
+    },
+    {
+      rel: "manifest",
+      href: "/manifest.json",
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr">
       <head>
-        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="PB Portfolio" />
+        <DefaultSeo {...seoConfig} />
 
         {/* Schema.org JSON-LD */}
         <script
