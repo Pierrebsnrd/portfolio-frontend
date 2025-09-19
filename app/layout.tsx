@@ -17,15 +17,27 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://portfolio-frontend-neon-six.vercel.app/",
   },
+  manifest: "/manifest.json",
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icons/favicon-32x32.png", type: "image/png", sizes: "32x32" },
-      { url: "/icons/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icons/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
-    apple: "/icons/apple-touch-icon.png",
-    shortcut: "/icons/favicon-32x32.png",
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/icons/icon-152x152.png", sizes: "152x152", type: "image/png" },
+      { url: "/icons/icon-144x144.png", sizes: "144x144", type: "image/png" },
+    ],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "PB Portfolio",
+  },
+  formatDetection: {
+    telephone: false,
   },
   openGraph: {
     title: "Pierre Boisnard - Développeur Full-Stack",
@@ -62,8 +74,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <head>
-        {/* Manifest pour PWA */}
-        <link rel="manifest" href="/manifest.json" />
 
 
         {/* Schema.org JSON-LD */}
