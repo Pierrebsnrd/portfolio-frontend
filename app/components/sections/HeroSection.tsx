@@ -1,6 +1,7 @@
 "use client";
 
 import { Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -28,10 +29,15 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
       <div className="relative z-10 text-center max-w-4xl mx-auto px-4 py-8 sm:py-12">
         {/* Avatar */}
         <div className="mb-6 sm:mb-8">
-          <div className="w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-2xl animate-pulse">
-            <span className="text-3xl sm:text-4xl font-bold text-white">
-              PB
-            </span>
+          <div className="w-28 h-28 sm:w-32 sm:h-32 mx-auto mb-4 sm:mb-6 rounded-full overflow-hidden shadow-2xl ring-4 ring-blue-500/20">
+            <Image
+              src="/images/profile.png"
+              alt="Pierre Boisnard"
+              width={800}
+              height={800}
+              className="w-full h-full object-cover scale-100"
+              priority
+            />
           </div>
         </div>
 
