@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail, Download } from "lucide-react";
+import { Github, Linkedin, Mail/* , Download  */} from "lucide-react";
 import Image from "next/image";
 
 interface HeroSectionProps {
