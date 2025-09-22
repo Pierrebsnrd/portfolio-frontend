@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Download } from "lucide-react";
 import Image from "next/image";
 
 interface HeroSectionProps {
@@ -81,6 +81,14 @@ const HeroSection = ({ scrollToSection }: HeroSectionProps) => {
           >
             Me contacter
           </button>
+          {/* <a
+            href="/documents/cv-pierre-boisnard.pdf"
+            download="CV-Pierre-Boisnard.pdf"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all transform hover:scale-105 shadow-lg text-sm sm:text-base font-medium flex items-center justify-center gap-2"
+          >
+            <Download className="w-4 h-4" />
+            Télécharger mon CV
+          </a> */}
         </div>
 
         {/* Liens sociaux */}
