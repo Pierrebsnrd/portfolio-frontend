@@ -5,7 +5,7 @@ import { Metadata, Viewport } from "next";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-frontend-neon-six.vercel.app"),
+  metadataBase: new URL("https://pierreboisnard.com"),
   title: "Pierre Boisnard - Développeur Full-Stack",
   description:
     "Portfolio de Pierre Boisnard, développeur full-stack spécialisé en React, Next.js, Node.js et MongoDB. Découvrez mes projets et réalisations.",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   creator: "Pierre Boisnard",
   robots: "index, follow",
   alternates: {
-    canonical: "https://portfolio-frontend-neon-six.vercel.app/",
+    canonical: "https://pierreboisnard.com/",
   },
   manifest: "/manifest.json",
   icons: {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "Pierre Boisnard - Développeur Full-Stack",
     description:
       "Portfolio de Pierre Boisnard, développeur full-stack spécialisé en React, Next.js, Node.js et MongoDB.",
-    url: "https://portfolio-frontend-neon-six.vercel.app/",
+    url: "https://pierreboisnard.com/",
     siteName: "Pierre Boisnard Portfolio",
     type: "website",
     locale: "fr_FR",
@@ -93,7 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               jobTitle: "Développeur Full-Stack",
               description:
                 "Développeur web spécialisé en React, Next.js, Node.js et MongoDB",
-              url: "https://portfolio-frontend-neon-six.vercel.app/",
+              url: "https://pierreboisnard.com/",
               sameAs: [
                 "https://github.com/Pierrebsnrd",
                 "https://www.linkedin.com/in/pierre-boisnard-74514785/",
