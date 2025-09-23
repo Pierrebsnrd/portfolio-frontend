@@ -130,10 +130,10 @@ const Contact = () => {
                   <p className="font-semibold">
                     🚀 Disponible pour de nouveaux projets
                   </p>
-                  <p className="text-sm opacity-90">
+                  {/* <p className="text-sm opacity-90">
                     Je suis actuellement disponible pour des missions freelance.
                     N'hésitez pas à me contacter !
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>

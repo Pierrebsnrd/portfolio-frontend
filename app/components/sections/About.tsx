@@ -96,10 +96,10 @@ const About = () => {
                   une attention particulière aux bonnes pratiques de
                   développement et à l'expérience utilisateur.
                 </p>
-                <p>
+                {/* <p>
                   J'accompagne mes clients dans la réalisation de leurs projets
                   digitaux, de la conception à la mise en production.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
