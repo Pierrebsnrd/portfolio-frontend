@@ -126,15 +126,15 @@ const Contact = () => {
                 </div>
 
                 {/* Disponibilité */}
-                <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-4 text-white mt-4">
+                {/* <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-4 text-white mt-4">
                   <p className="font-semibold">
                     🚀 Disponible pour de nouveaux projets
                   </p>
-                  {/* <p className="text-sm opacity-90">
+                  <p className="text-sm opacity-90">
                     Je suis actuellement disponible pour des missions freelance.
                     N'hésitez pas à me contacter !
-                  </p> */}
-                </div>
+                  </p>
+                </div> */}
               </div>
             </div>
           </div>
