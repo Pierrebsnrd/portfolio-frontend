@@ -106,7 +106,7 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Filtres - CORRECTION APPLIQUÉE */}
+        {/* Filtres */}
         <div className="flex justify-center mb-12">
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4 p-2">
             {filters.map((filter) => (

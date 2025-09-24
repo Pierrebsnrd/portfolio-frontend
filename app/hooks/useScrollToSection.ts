@@ -1,6 +1,3 @@
-// Hook de scroll corrigé
-// app/hooks/useScrollToSection.ts
-
 import { useCallback } from "react";
 
 export const useScrollToSection = () => {

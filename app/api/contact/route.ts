@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { ContactFormData } from "../../../app/types/index";
 
-// Template HTML pour votre notification
+// Template HTML pour la notification
 function generateContactEmailHTML(
   name: string,
   email: string,
@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
     const body: ContactFormData = await request.json();
     const { name, email, message } = body;
 
-    // Validation basique
+    // Validation que les champs sont remplis
     if (!name || !email || !message) {
       return NextResponse.json(
         { message: "Tous les champs sont requis" },
