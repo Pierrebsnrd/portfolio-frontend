@@ -212,7 +212,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
           {/* Technologies */}
           <div className="flex flex-wrap gap-2 mb-4">
-            {(showAllTechnologies ? project.technologies : project.technologies.slice(0, 4)).map((tech, index) => (
+            {(showAllTechnologies
+              ? project.technologies
+              : project.technologies.slice(0, 4)
+            ).map((tech, index) => (
               <span
                 key={index}
                 className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded text-xs font-medium"
@@ -225,7 +228,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 onClick={() => setShowAllTechnologies(!showAllTechnologies)}
                 className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded text-xs font-medium hover:bg-blue-200 dark:hover:bg-blue-800 transition-colors cursor-pointer"
               >
-                {showAllTechnologies ? 'Moins' : `+${project.technologies.length - 4}`}
+                {showAllTechnologies
+                  ? "Moins"
+                  : `+${project.technologies.length - 4}`}
               </button>
             )}
           </div>

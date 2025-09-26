@@ -26,45 +26,91 @@ const projects: Project[] = [
     githubBackend: "https://github.com/Pierrebsnrd/sophrologie-backend",
     demo: "https://www.sophrologuevillepreux.fr/",
     featured: true,
-    images: ["/images/projects/sophrologie/image-1.png", "/images/projects/sophrologie/image-2.png", "/images/projects/sophrologie/image-3.png", "/images/projects/sophrologie/image-4.png", "/images/projects/sophrologie/image-5.png", "/images/projects/sophrologie/image-6.png", "/images/projects/sophrologie/image-7.png", "/images/projects/sophrologie/image-8.png", "/images/projects/sophrologie/image-9.png"],
+    images: [
+      "/images/projects/sophrologie/image-1.png",
+      "/images/projects/sophrologie/image-2.png",
+      "/images/projects/sophrologie/image-3.png",
+      "/images/projects/sophrologie/image-4.png",
+      "/images/projects/sophrologie/image-5.png",
+      "/images/projects/sophrologie/image-6.png",
+      "/images/projects/sophrologie/image-7.png",
+      "/images/projects/sophrologie/image-8.png",
+      "/images/projects/sophrologie/image-9.png",
+    ],
   },
   {
     id: 2,
     title: "Trollen",
     description:
       "Application sociale immersive combinant chat anonyme et éléments RPG. Fonctionnalités de chat temps réel, système de personnages et interface mobile optimisée.",
-    technologies: ["React Native", "Node.js", "Express", "MongoDB", "Socket.IO", "Expo", "Redux", "JWT"],
+    technologies: [
+      "React Native",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Socket.IO",
+      "Expo",
+      "Redux",
+      "JWT",
+    ],
     category: "mobile",
     githubFrontend: "https://github.com/Pierrebsnrd/trollen-frontend",
     githubBackend: "https://github.com/Pierrebsnrd/trollen-backend",
     demo: "#",
     featured: true,
-    images: ["/images/projects/trollen/image-1.png", "/images/projects/trollen/image-2.png", "/images/projects/trollen/image-3.png"],
+    images: [
+      "/images/projects/trollen/image-1.png",
+      "/images/projects/trollen/image-2.png",
+      "/images/projects/trollen/image-3.png",
+    ],
   },
   {
     id: 3,
     title: "Weather App Plus",
     description:
       "Application météo avancée avec interface moderne et fonctionnalités étendues. Architecture full-stack avec frontend et backend séparés pour une expérience utilisateur optimisée.",
-    technologies: ["React", "Node.js", "API REST", "Tailwind CSS", "Express", "MongoDB", "JWT"],
+    technologies: [
+      "React",
+      "Node.js",
+      "API REST",
+      "Tailwind CSS",
+      "Express",
+      "MongoDB",
+      "JWT",
+    ],
     category: "fullstack",
     githubFrontend: "https://github.com/Pierrebsnrd/weather-app-plus-frontend",
     githubBackend: "https://github.com/Pierrebsnrd/weather-app-plus-backend",
     demo: "https://weather-app-plus-frontend.vercel.app/",
     featured: false,
-    images: ["/images/projects/weather-app-plus/image-1.png", "/images/projects/weather-app-plus/image-2.png", "/images/projects/weather-app-plus/image-3.png", "/images/projects/weather-app-plus/image-4.png"],
+    images: [
+      "/images/projects/weather-app-plus/image-1.png",
+      "/images/projects/weather-app-plus/image-2.png",
+      "/images/projects/weather-app-plus/image-3.png",
+      "/images/projects/weather-app-plus/image-4.png",
+    ],
   },
   {
     id: 4,
     title: "Portfolio",
     description:
       "Portfolio personnel développé avec Next.js et TypeScript. Interface moderne avec animations, section projets dynamique et formulaire de contact intégré.",
-    technologies: ["TypeScript", "Next.js", "React", "Tailwind CSS", "Framer Motion", "Nodemailer"],
+    technologies: [
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Nodemailer",
+    ],
     category: "frontend",
     githubFrontend: "https://github.com/Pierrebsnrd/portfolio-frontend",
     demo: "https://portfolio-frontend-neon-six.vercel.app/",
     featured: false,
-    images: ["/images/projects/portfolio/image-1.png", "/images/projects/portfolio/image-2.png"],
+    images: [
+      "/images/projects/portfolio/image-1.png",
+      "/images/projects/portfolio/image-2.png",
+    ],
   },
 ];
 
@@ -113,10 +159,11 @@ const Projects = () => {
               <button
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key)}
-                className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-3 rounded-lg font-medium transition-all duration-200 text-sm sm:text-base min-h-[44px] ${activeFilter === filter.key
+                className={`flex items-center gap-2 px-4 py-3 sm:px-6 sm:py-3 rounded-lg font-medium transition-all duration-200 text-sm sm:text-base min-h-[44px] ${
+                  activeFilter === filter.key
                     ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg ring-2 ring-blue-500/30 transform scale-[1.02]"
                     : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-md"
-                  }`}
+                }`}
               >
                 <span className="flex-shrink-0">{filter.icon}</span>
                 <span className="whitespace-nowrap">{filter.label}</span>

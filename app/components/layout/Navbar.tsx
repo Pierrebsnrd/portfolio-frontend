@@ -66,7 +66,9 @@ const Navbar = ({ darkMode, toggleDarkMode, scrollToSection }: NavbarProps) => {
             <button
               onClick={toggleDarkMode}
               className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-              aria-label={darkMode ? "Passer au mode clair" : "Passer au mode sombre"}
+              aria-label={
+                darkMode ? "Passer au mode clair" : "Passer au mode sombre"
+              }
             >
               {darkMode ? (
                 <Sun className="w-5 h-5" />

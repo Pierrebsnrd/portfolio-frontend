@@ -15,11 +15,11 @@
     "critters": "^0.0.25",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.263.1",
-    "next": "^14.1.0",
+    "next": "15.5.4",
     "nodemailer": "^7.0.6",
     "prettier": "^3.6.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "web-vitals": "^2.1.4",
     "zod": "^4.1.8"
   },
@@ -34,6 +34,5 @@
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.0"
-  },
-  "packageManager": "yarn@4.10.3+sha512.c38cafb5c7bb273f3926d04e55e1d8c9dfa7d9c3ea1f36a4868fa028b9e5f72298f0b7f401ad5eb921749eb012eb1c3bb74bf7503df3ee43fd600d14a018266f"
+  }
 }
