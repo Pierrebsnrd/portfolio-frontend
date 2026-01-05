@@ -72,9 +72,17 @@ const Footer = ({ scrollToTop }: FooterProps) => {
               <p className="text-gray-400 text-xs sm:text-sm">
                 © 2025 Pierre Boisnard. Tous droits réservés.
               </p>
-              <p className="text-gray-400 text-xs sm:text-sm">
-                Développé avec React & Next.js
-              </p>
+              <div className="flex items-center gap-4">
+                <p className="text-gray-400 text-xs sm:text-sm">
+                  Développé avec React & Next.js
+                </p>
+                <button
+                  className="text-gray-400 text-xs underline"
+                  onClick={() => window.dispatchEvent(new Event("openCookieBanner"))}
+                >
+                  Gérer les cookies
+                </button>
+              </div>
             </div>
           </div>
         </div>

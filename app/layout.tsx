@@ -1,6 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Metadata, Viewport } from "next";
+import Analytics from "./components/Analytics";
+import AnalyticsLoader from "./components/AnalyticsLoader";
+import CookieConsent from "./components/CookieConsent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -123,6 +126,7 @@ export default function RootLayout({
             }),
           }}
         />
+
       </head>
       <body className={inter.className}>
         <noscript>
@@ -131,7 +135,10 @@ export default function RootLayout({
             <p>Ce site nécessite JavaScript pour fonctionner correctement.</p>
           </div>
         </noscript>
+        <AnalyticsLoader />
+        <Analytics />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
