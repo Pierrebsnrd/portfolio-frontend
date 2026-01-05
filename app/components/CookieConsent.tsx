@@ -5,14 +5,12 @@ import { useEffect, useState } from "react";
 const CONSENT_KEY = "analytics_consent";
 
 export default function CookieConsent() {
-  const [consent, setConsent] = useState<'granted' | 'denied' | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const saved = localStorage.getItem(CONSENT_KEY);
     if (saved === "granted" || saved === "denied") {
-      setConsent(saved as 'granted' | 'denied');
       setVisible(false);
     } else {
       setVisible(true);
@@ -21,7 +19,7 @@ export default function CookieConsent() {
     const onOpen = () => setVisible(true);
     const onChange = (e: Event) => {
       const detail = (e as CustomEvent).detail;
-      if (detail === "granted" || detail === "denied") setConsent(detail);
+      if (detail === "granted" || detail === "denied") setVisible(false);
     };
 
     window.addEventListener("openCookieBanner", onOpen);
@@ -34,14 +32,12 @@ export default function CookieConsent() {
 
   const accept = () => {
     localStorage.setItem(CONSENT_KEY, "granted");
-    setConsent("granted");
     setVisible(false);
     window.dispatchEvent(new CustomEvent("cookieConsentChanged", { detail: "granted" }));
   };
 
   const decline = () => {
     localStorage.setItem(CONSENT_KEY, "denied");
-    setConsent("denied");
     setVisible(false);
     window.dispatchEvent(new CustomEvent("cookieConsentChanged", { detail: "denied" }));
   };
